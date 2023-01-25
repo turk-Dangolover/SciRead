@@ -9,3 +9,36 @@ email VARCHAR(255),
 passwort VARCHAR(255),
 roles_id INTEGER REFERENCES roles(role_id)
 );
+CREATE TABLE publisher (
+publisher_id SERIAL Primary KEY,
+name varchar(255) not null,
+comment varchar(4000)
+);
+CREATE TABLE type (
+type_id SERIAL Primary KEY,
+type varchar(255) not null,
+comment varchar(4000)
+);
+CREATE TABLE fachbereich(
+fachbereich_id SERIAL Primary KEY,
+fachbereich varchar(255) not null,
+comment varchar(4000)
+);
+CREATE TABLE literatur(
+literatur_id SERIAL Primary KEY,
+publisher_id integer references publisher(publisher_id) not null,
+pages int not null,
+type_id integer references type(type_id) not null,
+author varchar(4000) not null,
+title varchar(2000) not null,
+published_date date not null,
+fachbereich_id integer references fachbereich(fachbereich_id) not null,
+creation_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP not null,
+user_id integer references users(user_id) not null,
+comment varchar(4000)
+);
+CREATE TABLE bookmark (
+ID Serial Primary Key,
+literatur_id integer references literatur(literatur_id) not null,
+user_id integer references users(user_id) not null
+);
