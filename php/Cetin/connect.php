@@ -5,7 +5,7 @@
 ?>
 
 <?php
-$config = parse_ini_file("../config.ini");
+$config = parse_ini_file("../../config.ini");
 $host = $config['host'];
 $port = $config['port'];
 $db = $config['db'];

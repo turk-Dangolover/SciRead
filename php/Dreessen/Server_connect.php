@@ -1,5 +1,5 @@
      <?php 
-	    $params = parse_ini_file('database.ini');
+	    $params = parse_ini_file("../../database.ini");
         $host = $params['host'];
         $port = $params['port'];
         $db = $params['database'];

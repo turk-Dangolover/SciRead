@@ -17,9 +17,13 @@ session_start();
 $user_id = $_SESSION['user_id'];
 
 // Holt das Passwort des Benutzers aus der Datenbank
+// PDO Statement Objekt wird erstellt
 $stmt = $dbh->prepare("SELECT passwort FROM users WHERE user_id = :user_id");
+// Parameter werden an das PDO Statement Objekt gebunden
 $stmt->bindParam(':user_id', $user_id);
+// PDO Statement wird ausgeführt
 $stmt->execute();
+// Das Ergebnis wird in eine Variable gespeichert
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Kontrolliert ob das aktuelle Passwort mit dem Passwort in der Datenbank übereinstimmt
@@ -44,7 +48,7 @@ $hashed_password = password_hash($passwort_neu, PASSWORD_DEFAULT);
 $sql = "UPDATE users SET passwort = '$hashed_password' WHERE user_id = $user_id";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
-// Falls erfolgreuich, wird der Benutzer hierher weitergeleitet
+// Falls erfolgreich, wird der Benutzer hierher weitergeleitet
 header('Location: page_change_password.php?success=0');
 
 // Schließt die Verbindung zur Datenbank

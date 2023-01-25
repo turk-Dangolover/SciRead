@@ -45,11 +45,11 @@ if(isset($_SESSION['roles_id'])){
                 </a>
                 
                 <?php if($login){
-                  echo '<a class="btn btn-sm btn-outline-secondary" href="function_logout.php">Sign Out</a>';
+                  echo '<a class="btn btn-sm btn-outline-secondary" href="../Cetin/function_logout.php">Sign Out</a>';
                 }
                 else{
-                  echo '<a class="btn btn-sm btn-outline-secondary" href="page_login.php">Log In</a>';
-                  echo '<a class="btn btn-sm btn-outline-secondary" href="page_register.php">Sign Up</a>';
+                  echo '<a class="btn btn-sm btn-outline-secondary" href="../Cetin/page_login.php">Log In</a>';
+                  echo '<a class="btn btn-sm btn-outline-secondary" href="../Cetin/page_register.php">Sign Up</a>';
                 }
                 ?>
             </div>
@@ -60,19 +60,19 @@ if(isset($_SESSION['roles_id'])){
         <nav class="nav d-flex justify-content-between">
           <a class="p-2 text-muted" href="#">Übersicht</a>
           <?php if ($login){
-            echo '<a class="p-2 text-muted" href="Submit_nav.php">Hinzufügen</a>';
-            echo '<a class="p-2 text-muted" href="page_profile.php">User</a>';
+            echo '<a class="p-2 text-muted" href="../Dreessen/Submit.php">Hinzufügen</a>';
+            echo '<a class="p-2 text-muted" href="../Cetin/page_profile.php">User</a>';
           }
           else{
-            echo '<a class="p-2 text-muted" href="page_login.php">Hinzufügen</a>';
-            echo '<a class="p-2 text-muted" href="page_login.php">User</a>';
+            echo '<a class="p-2 text-muted" href="../Cetin/page_login.php">Hinzufügen</a>';
+            echo '<a class="p-2 text-muted" href="../Cetin/page_login.php">User</a>';
           }
           ?>
           <?php if($user_role != "1"){
           echo '<a class="p-2 text-muted" href="#" style="display:none;">Adminbereich</a>';
           }
           else{
-           echo '<a class="p-2 text-muted" href="page_admin.php">Adminbereich</a>';
+           echo '<a class="p-2 text-muted" href="../Cetin/page_admin.php">Adminbereich</a>';
           }?>
 
           <a class="p-2 text-muted" href="#"></a>
