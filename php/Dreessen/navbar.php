@@ -26,7 +26,7 @@ if(isset($_SESSION['roles_id'])){
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.0/examples/blog/blog.css" rel="stylesheet">
-    <link rel="icon" href="../pic/Icon.webp">
+    <link rel="icon" href="../pic/Icon.webp" sizes="32x32">
 </head>
 <body>
      <!-- Header von Kevin -->
