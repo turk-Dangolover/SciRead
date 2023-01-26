@@ -19,7 +19,7 @@ Beschreibung: Website für die Verwaltung der Benutzer
 <!-- Mein (Cem Cetin) Teil der Website -->
 <?php
 // Header wird eingebunden
-include_once "navbar.php";
+include_once "../Dreessen/navbar.php";
 // Verbindung zur Datenbank
 require 'connect.php';
 // Holt die Rolle des Users aus der Session
