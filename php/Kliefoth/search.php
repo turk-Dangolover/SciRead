@@ -13,9 +13,6 @@
     <?php
     include_once "../Dreessen/navbar.php";
     require_once "../Dreessen/Server_connect.php";
-    if (!isset($_SESSION['user_id'])) {
-        echo "<script>window.location.href='../Cetin/page_login.php'</script>";
-    }
     if (isset($_POST['titel']) || isset($_GET['titel'])) {
         if (isset($_POST['titel'])) {
             $titel = $_POST['titel'];
@@ -40,10 +37,14 @@
     $user_id = $_SESSION['user_id'];
     if (isset($use)) {
         if ($use === "addbookmark") {
-            executeSQL("INSERT INTO public. \"bookmark\" (literatur_id,user_id) VALUES ($id,$user_id)")->fetch();
-            echo "<script>window.location.href='search.php'</script>";
+            $stmt = $dbConnection->prepare("INSERT INTO public.\"bookmark\" (literatur_id,user_id) VALUES (:lit_id,:user_id)");
+            $stmt->bindParam(':lit_id', $id);
+            $stmt->bindParam(':user_id', $user_id);
+            $stmt->execute();
+            echo "ADDED";
+            //echo "<script>window.location.href='search.php'</script>";
         } else if ($use === "removebookmark") {
-            executeSQL("DELETE FROM public. \"bookmark\" where literatur_id = $id and user_id=$user_id")->fetch();
+            executeSQL("DELETE FROM public.\"bookmark\" where literatur_id = $id and user_id=$user_id")->execute();
             echo "<script>window.location.href='search.php'</script>";
         }
     }
