@@ -26,12 +26,15 @@ include_once "../Dreessen/navbar.php";
 // Verbindung zur Datenbank
 require 'connect.php';
 // Holt die Rolle des Users aus der Session
-$login = $_SESSION['login'];
+if(isset($_SESSION['login'])){
+	$login = $_SESSION['login'];
+}
 // Falls der User ein Admin ist, wird ihn der Inhalt der Seite angezeigt
 if(!$login){
+include_once "401.php";
 	// Falls der User kein Admin ist, wird Ihn eine Fehlermeldung angezeigt
-	header('Location: 401.php');
-    }
+	return;
+}
  ?>
 <div class="container">
 	<div class="card-header">
