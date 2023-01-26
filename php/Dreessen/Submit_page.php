@@ -36,7 +36,7 @@ include '../dreessen/Server_connect.php'
                         <div class="col-md-3 mb-3">
                         <label for publisher>Verlag:</label>
                             <select class="custom-select mr-sm-2" name="verlag" required onchange="getVerlagId(this.value)">
-                                <option value="" disabled selected hidden>Choose...</option>
+                                <option value="" disabled selected hidden>Wähle...</option>
                                 <?php
                                 $stmt = executeSQL("SELECT name FROM publisher");
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -59,7 +59,7 @@ include '../dreessen/Server_connect.php'
                         <div class="col-md-3 mb-3">
                         <label for fachbereich>Fachbereich</label>
                             <select class="custom-select mr-sm-2" name="fachbereich" required onchange="getFachbereichId(this.value)">
-                                <option value="" disabled selected hidden>Choose...</option>
+                                <option value="" disabled selected hidden>Wähle...</option>
                                 <?php
                                 $stmt = executeSQL("SELECT fachbereich FROM fachbereich");
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -75,7 +75,7 @@ include '../dreessen/Server_connect.php'
                         <div class="col-md-3 mb-3">
                         <label for type>Typ:</label>
                             <select class="custom-select mr-sm-2" name="typ" required onchange="getTypId(this.value)">
-                                <option value="" disabled selected hidden>Choose...</option>
+                                <option value="" disabled selected hidden>Wähle...</option>
                                 <?php
                                 $stmt = executeSQL("SELECT type FROM type");
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
