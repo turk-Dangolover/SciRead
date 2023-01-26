@@ -5,7 +5,7 @@ include_once 'navbar.php';
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <title>SciRead|Homepage </title>
     </head>
     <body>
         <div class="container">    

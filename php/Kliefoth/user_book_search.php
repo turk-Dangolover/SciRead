@@ -12,8 +12,8 @@
 <body>
 
     <?php
-    include_once "navbar.php";
-    require_once "Server_connect.php";
+    include_once "../Dreessen/navbar.php";
+    require_once "../Dreessen/Server_connect.php";
     if (!isset($_SESSION['user_id'])) {
         echo "<script>window.location.href='page_login.php'</script>";
     }
