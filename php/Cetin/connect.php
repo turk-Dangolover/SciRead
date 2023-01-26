@@ -19,11 +19,12 @@ try {
     $countAdmin->execute();
     $count = $countAdmin->fetchColumn();
     if($count < 1){
-        $pw = password_hash('admin', PASSWORD_DEFAULT);
+        $pwAdmin = password_hash('admin', PASSWORD_DEFAULT);
+        //Es werden Parameter verwendet, um SQL-Injection zu verhindern
         $sql = "INSERT INTO users (email, passwort, roles_id) VALUES (:email, :passwort, :roles_id)";
         $stmt = $dbh->prepare($sql);
          $stmt->bindValue(':email', 'admin@admin.de');
-         $stmt->bindValue(':passwort', $pw);
+         $stmt->bindValue(':passwort', $pwAdmin);
          $stmt->bindValue(':roles_id', 1);
         $stmt->execute();
     }

@@ -45,15 +45,18 @@ if (!$isPasswordCorrect) {
 $hashed_password = password_hash($passwort_neu, PASSWORD_DEFAULT);
 
 // Updatet das Passwort in der Datenbank
-$sql = "UPDATE users SET passwort = '$hashed_password' WHERE user_id = $user_id";
+$sql = "UPDATE users SET passwort = '$hashed_password' WHERE user_id = :user_id";
 $stmt = $dbh->prepare($sql);
+$stmt->bindParam(':user_id', $user_id);
 $stmt->execute();
 // Falls erfolgreich, wird der Benutzer hierher weitergeleitet
 header('Location: page_change_password.php?success=0');
 
 // Schließt die Verbindung zur Datenbank
 $dbh->connection = null;
+} else {
+    header('Location: page_change_password.php?success=3');
 }
-header('Location: page_change_password.php?success=3');
+
 
 ?>
