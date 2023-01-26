@@ -23,6 +23,10 @@ include_once "../Dreessen/navbar.php";
 // Verbindung zur Datenbank
 require 'connect.php';
 // Holt die Rolle des Users aus der Session
+if(!(isset($_SESSION['roles_id']))){
+    include_once "401.php";
+    return;
+}
 $role = $_SESSION['roles_id'];
 // Falls der User ein Admin ist, wird ihn der Inhalt der Seite angezeigt
 if($role == '1'){
@@ -79,7 +83,7 @@ if($role == '1'){
 <?php
    } else {
     // Falls der User kein Admin ist, wird Ihn eine Fehlermeldung angezeigt
-    header('Location: 401.php');
+    include_once "401.php";
    }
 ?>
 </body>

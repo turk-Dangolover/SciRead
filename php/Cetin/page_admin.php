@@ -21,12 +21,16 @@ Beschreibung: Bereich für den Admin mit allen Funktionen
 include_once "../Dreessen/navbar.php";
 // Verbindung zur Datenbank
 require 'connect.php';
-// Holt die Rolle des Users aus der Session
+// Holt sich die Rolle des Users
+if(!(isset($_SESSION['roles_id']))){
+    include_once "401.php";
+    return;
+}
 $role = $_SESSION['roles_id'];
 // Falls der User ein Admin ist, wird ihn der Inhalt der Seite angezeigt
 if(!($role == '1')){
     // Falls der User kein Admin ist, wird Ihn eine Fehlermeldung angezeigt
-    header('Location: 401.php');
+    include_once "401.php";
     return;
     }
  ?>

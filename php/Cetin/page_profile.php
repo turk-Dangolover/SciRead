@@ -16,29 +16,22 @@ Beschreibung: Verwaltung des Profils
         <link  rel="stylesheet" href="../css/style.css">
     <title>Document</title>
 </head>
-<body>
 <?php
 include_once "../Dreessen/navbar.php";
     // Verbindung zur Datenbank
    require 'connect.php';
     // Holt die Rolle des Users aus der Session
-     if(!isset($_SESSION['login'])) {
-         echo "Bitte zuerst <a href='page_login.php'>einloggen</a>";
-         return;
-     }
-
-   $login = $_SESSION['login'];
+    if(isset($_SESSION['login'])){
+        $login = $_SESSION['login'];
+    }
    // Falls der User ein Admin ist, wird ihn der Inhalt der Seite angezeigt
    if(!$login){
+    include_once "401.php";
         // Falls der User kein Admin ist, wird Ihn eine Fehlermeldung angezeigt
-        ?>
-        <script>
-           location.href = "page_login.php";
-        </script>
-        <?php
         return;
     }
  ?>
+<body>
 <!-- Inhalt der Website -->
 <div class="container">
   <div class="card">
