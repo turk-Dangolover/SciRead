@@ -37,12 +37,11 @@
     $user_id = $_SESSION['user_id'];
     if (isset($use)) {
         if ($use === "addbookmark") {
-            $stmt = $dbConnection->prepare("INSERT INTO public.\"bookmark\" (literatur_id,user_id) VALUES (:lit_id,:user_id)");
-            $stmt->bindParam(':lit_id', $id);
-            $stmt->bindParam(':user_id', $user_id);
+            $stmt = $dbConnection->prepare("INSERT INTO bookmark (literatur_id,user_id) VALUES (:lit_id,:user_id)");
+            $stmt->bindValue(':lit_id', $id);
+            $stmt->bindValue(':user_id', $user_id);
             $stmt->execute();
-            echo "ADDED";
-            //echo "<script>window.location.href='search.php'</script>";
+            echo "<script>window.location.href='search.php'</script>";
         } else if ($use === "removebookmark") {
             executeSQL("DELETE FROM public.\"bookmark\" where literatur_id = $id and user_id=$user_id")->execute();
             echo "<script>window.location.href='search.php'</script>";
@@ -105,11 +104,10 @@
                             echo "<td>" . $b[6] . "</td>";
                             if ($user_id != null) {
                                 $bookmark = executeSQL("SELECT literatur_id FROM public.\"bookmark\" WHERE literatur_id = $b[7] and user_id = $user_id")->fetch();
-                                echo $bookmark;
                                 if ($bookmark == null) {
-                                    echo "<td><a class='btn border' href='search.php?use=addbookmark?id=$b[7]'>+</a></td>";
+                                    echo "<td><a class='btn border' href='search.php?use=addbookmark&id=$b[7]'>+</a></td>";
                                 } else {
-                                    echo "<td><a class='btn border' href='search.php?use=removebookmark?id=$b[7]'>-</a></td>";
+                                    echo "<td><a class='btn border' href='search.php?use=removebookmark&id=$b[7]'>-</a></td>";
                                 }
                             }
                             echo "</tr>";

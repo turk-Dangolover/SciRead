@@ -61,14 +61,14 @@
     if (isset($_POST['search-filter'])) {
         $sort = "ORDER BY " . $_POST['search-filter'];
     } else {
-        $sort = "ORDER BY Titel ASC";
+        $sort = "ORDER BY Title ASC";
     }
 
-    $books = executeSQL("SELECT id,Titel,VerlagID,Seitenzahl,TypID,Author,Veröffentlichungsdatum,FachbereichID FROM public.\"wissenschaftliche_literatur\" WHERE Titel LIKE '$titel%' AND userID = '$user_id' $sort")->fetchAll();
+    $books = executeSQL("SELECT literatur_id,title,publisher_id,pages,type_id,author,published_date,fachbereich_id FROM public.\"literatur\" WHERE title LIKE '$titel%' AND user_id = '$user_id' $sort")->fetchAll();
 
     if ($use === "delete" && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("Select Titel,VerlagID,Seitenzahl,TypID,Author,Veröffentlichungsdatum,FachbereichID,userID FROM public.\"wissenschaftliche_literatur\" WHERE id='$id'")->fetch();
+            $book = executeSQL("SELECT title,publisher_id,pages,type_id,author,published_date,fachbereich_id,user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
     ?>
@@ -117,17 +117,17 @@
                 header("Location: search.php", true, 302);
             }
         } else {
-            $book_userid = executeSQL("Select userID FROM public.\"wissenschaftliche_literatur\" WHERE id='$id'")->fetch()[0];
+            $book_userid = executeSQL("SELECT user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch()[0];
             if (isset($user_id)) {
                 if ($user_id === $book_userid) {
-                    executeSQL('DELETE FROM public."wissenschaftliche_literatur" WHERE id=' . $id)->fetch();
+                    executeSQL('DELETE FROM public."literatur" WHERE literatur_id=' . $id)->fetch();
                 }
             }
             echo "<script>window.location.href='user_book_search.php'</script>";
         }
     } elseif ($use === "update"  && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("Select Titel,VerlagID,Seitenzahl,TypID,Author,Veröffentlichungsdatum,FachbereichID,userID FROM public.\"wissenschaftliche_literatur\" WHERE id='$id'")->fetch();
+            $book = executeSQL("Select title,publisher_id,pages,type_id,author,published_date,fachbereich_id,user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
                 ?>
@@ -184,10 +184,10 @@
                 header("Location: user_book_search.php", true, 302);
             }
         } else {
-            $book_userid = executeSQL("Select userID FROM public.\"wissenschaftliche_literatur\" WHERE id='$id'")->fetch()[0];
+            $book_userid = executeSQL("SELECT user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch()[0];
             if (isset($user_id)) {
                 if ($user_id === $book_userid) {
-                    executeSQL("UPDATE public.\"wissenschaftliche_literatur\" SET titel='" . $title . "',verlagID='" . $verlagid . "',seitenzahl='" . $seitenzahl . "',typID='" . $typid . "',author='" . $author . "',veröffentlichungsdatum='" . $veröffentlichungsdatum . "',fachbereichID='" . $fachbereichid . "'  WHERE id=" . $id)->fetch();
+                    executeSQL("UPDATE public.\"literatur\" SET title='" . $title . "',publisher_id='" . $verlagid . "',pages='" . $seitenzahl . "',type_id='" . $typid . "',author='" . $author . "',published_date='" . $veröffentlichungsdatum . "',fachbereich_id='" . $fachbereichid . "'  WHERE literatur_id=" . $id)->fetch();
                 }
             }
             echo "<script>window.location.href='user_book_search.php'</script>";
@@ -205,14 +205,14 @@
                     <div class="col-auto">
                         <label for="search-filter" class="col-form-label">Sortieren:</label>
                         <select class="form-select" name="search-filter" id="search-filter">
-                            <option value="Titel ASC" <?php if ($sort === "ORDER BY Titel ASC") echo "selected" ?>>Titel ↓</option>
-                            <option value="Titel DESC" <?php if ($sort === "ORDER BY Titel DESC") echo "selected" ?>>Titel ↑</option>
-                            <option value="Author ASC" <?php if ($sort === "ORDER BY Author ASC") echo "selected" ?>>Autor ↓</option>
-                            <option value="Author DESC" <?php if ($sort === "ORDER BY Author DESC") echo "selected" ?>>Autor ↑</option>
-                            <option value="Seitenzahl ASC" <?php if ($sort === "ORDER BY Seitenzahl ASC") echo "selected" ?>>Seitenanzahl ↓</option>
-                            <option value="Seitenzahl DESC" <?php if ($sort === "ORDER BY Seitenzahl DESC") echo "selected" ?>>Seitenanzahl ↑</option>
-                            <option value="Veröffentlichungsdatum ASC" <?php if ($sort === "ORDER BY Veröffentlichungsdatum ASC") echo "selected" ?>>Veröffentlichungsdatum ↓</option>
-                            <option value="Veröffentlichungsdatum DESC" <?php if ($sort === "ORDER BY Veröffentlichungsdatum DESC") echo "selected" ?>>Veröffentlichungsdatum ↑</option>
+                            <option value="title ASC" <?php if ($sort === "ORDER BY title ASC") echo "selected" ?>>Titel ↓</option>
+                            <option value="title DESC" <?php if ($sort === "ORDER BY title DESC") echo "selected" ?>>Titel ↑</option>
+                            <option value="author ASC" <?php if ($sort === "ORDER BY author ASC") echo "selected" ?>>Autor ↓</option>
+                            <option value="author DESC" <?php if ($sort === "ORDER BY author DESC") echo "selected" ?>>Autor ↑</option>
+                            <option value="pages ASC" <?php if ($sort === "ORDER BY pages ASC") echo "selected" ?>>Seitenanzahl ↓</option>
+                            <option value="pages DESC" <?php if ($sort === "ORDER BY pages DESC") echo "selected" ?>>Seitenanzahl ↑</option>
+                            <option value="published_date ASC" <?php if ($sort === "ORDER BY published_date ASC") echo "selected" ?>>Veröffentlichungsdatum ↓</option>
+                            <option value="published_date DESC" <?php if ($sort === "ORDER BY published_date DESC") echo "selected" ?>>Veröffentlichungsdatum ↑</option>
                         </select>
                     </div>
                     <div class="col-auto">
