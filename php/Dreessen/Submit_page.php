@@ -1,6 +1,6 @@
 <?php
 include_once 'navbar.php';
-include 'Server_connect.php'
+include '../dreessen/Server_connect.php'
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ include 'Server_connect.php'
     <body>
         <div class="container">    
             <!--lässt jemanden die Seite erst sehen wenn eingloggt -->
-            <?php if ($login) { ?>
+            <?php// if ($login) { ?>
                 <form action="Submit.php" method="post">
                     <div class="row">
                         <div class="col-md-4 mb-3">
@@ -29,24 +29,27 @@ include 'Server_connect.php'
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
-                        <label for verlag>Verlag:</label>
+                        <label for publisher>Verlag:</label>
                             <select class="custom-select mr-sm-2" name="verlag" required onchange="getVerlagId(this.value)">
                                 <option value="" disabled selected hidden>Choose...</option>
                                 <?php
-                                $stmt = executeSQL("SELECT name FROM verlag");
+                                $stmt = executeSQL("SELECT name FROM publisher");
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
                                 }
                                 ?>
                             </select>
-                            <input type="hidden" id="verlag_id" name="verlag_id">
+                            <input type="hidden" id="publisher_id" name="publisher_id">
                             <div class="invalid-feedback">
                                 Bitte gebe ein verlag an.
                             </div>
                         </div>      
                         <div class="col-md-3 mb-3">
                             <label for="Seitenzahl">Seitenanzahl:</label>
-                            <input type="text" class="form-control" name="seitenzahl" placeholder="1234">
+                            <input type="text" class="form-control" name="seitenzahl" placeholder="1234" required>
+                        </div>
+                        <div class="invalid-feedback">
+                                Bitte gib die Seitenanzahl an.
                         </div>  
                         <div class="col-md-3 mb-3">
                         <label for fachbereich>Fachbereich</label>
@@ -65,17 +68,17 @@ include 'Server_connect.php'
                             </div>
                         </div>               
                         <div class="col-md-3 mb-3">
-                        <label for typ>Typ:</label>
+                        <label for type>Typ:</label>
                             <select class="custom-select mr-sm-2" name="typ" required onchange="getTypId(this.value)">
                                 <option value="" disabled selected hidden>Choose...</option>
                                 <?php
-                                $stmt = executeSQL("SELECT typ FROM typ");
+                                $stmt = executeSQL("SELECT type FROM type");
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                    echo '<option value="' . $row['typ'] . '">' . $row['typ'] . '</option>';
+                                    echo '<option value="' . $row['type'] . '">' . $row['type'] . '</option>';
                                 }
                                 ?>
                             </select>
-                            <input type="hidden" id="typ_id" name="typ_id">
+                            <input type="hidden" id="type_id" name="type_id">
                             <div class="invalid-feedback">
                                 Bitte gebe ein Fachbereich an.
                             </div>
@@ -92,17 +95,13 @@ include 'Server_connect.php'
                             <input type="text" class="form-control" name="Kommentar" >
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" >
-                    </div>
                     <p>
                     <button class="btn btn-primary" type="submit">Submit form</button>
                         <!--bis hier--> 
-                <?php } ?>
+                <?php //} ?>
                 <!--Not Loged In-->
-                <?php if($user_role != "1" && $user_role != "2")
-                    echo '<h1>Error 401</h1><p> <h1> Nicht autorisierter Zugriff </h1>'
+                <?php //if($user_role != "1" && $user_role != "2")
+                   // echo '<h1>Error 401</h1><p> <h1> Nicht autorisierter Zugriff </h1>'
                 ?>        
             </form>
         </main>
@@ -127,23 +126,23 @@ function getFachbereichId(fachbereich) {
     }
   });
 }
-function getVerlagId(fachbereich) {
+function getVerlagId(publisher) {
   $.ajax({
     type: 'POST',
     url: 'Submit.php',
-    data: {verlag: verlag},
+    data: {publisher: publisher},
     success: function(response) {
-      document.getElementById("verlag_id").value = response;
+      document.getElementById("publisher_id").value = response;
     }
   });
 }
-function getTypId(fachbereich) {
+function getTypId(type) {
   $.ajax({
     type: 'POST',
     url: 'Submit.php',
-    data: {typ: typ},
+    data: {type: type},
     success: function(response) {
-      document.getElementById("typ_id").value = response;
+      document.getElementById("type_id").value = response;
     }
   });
 }
