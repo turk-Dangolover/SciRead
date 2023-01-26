@@ -6,7 +6,7 @@ include 'Server_connect.php'
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <title>SciRead|Hinzufügen </title>
     </head>
     <body>
         <div class="container">    
