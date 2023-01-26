@@ -5,12 +5,12 @@
 ?>
 
 <?php
-$config = parse_ini_file("../../config.ini");
+$config = parse_ini_file("../../database.ini");
 $host = $config['host'];
 $port = $config['port'];
-$db = $config['db'];
+$db = $config['database'];
 $user = $config['user'];
-$pw = $config['pw'];
+$pw = $config['password'];
 $cStr = "pgsql:host=$host; port=$port;dbname=$db;";
 try {
     $dbh = new PDO($cStr, $user, $pw);
