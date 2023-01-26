@@ -83,8 +83,8 @@
     <input type="text" name="fachbereich" id="fachbereich">
   </div>
   <div class="form-element">
-    <label for="kommentar">Anmerkungen:</label>
-    <input type="text" name="kommentar" id="kommentar">
+    <label for="comment">Anmerkungen:</label>
+    <input type="text" name="comment" id="comment">
   </div>
   <input type="submit" value="Upload" name="submit"  class="btn btn-light" 
   onclick="alert('New Type added!'); location.href = 'addFachbereich.php'; return true;" /><br><br>

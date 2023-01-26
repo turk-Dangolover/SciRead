@@ -79,12 +79,12 @@
 
 <form action="savetype.php" method="post">
   <div class="form-element">
-    <label for="typ">Typ:</label>
-    <input type="text" name="typ" id="typ">
+    <label for="type">Typ:</label>
+    <input type="text" name="type" id="type">
   </div>
   <div class="form-element">
-    <label for="kommentar">Anmerkungen:</label>
-    <input type="text" name="kommentar" id="kommentar">
+    <label for="comment">Anmerkungen:</label>
+    <input type="text" name="comment" id="comment">
   </div>
   <input type="submit" value="Upload" name="submit"  class="btn btn-light" 
   onclick="alert('New Type added!'); location.href = 'addType.php'; return true;" /><br><br>

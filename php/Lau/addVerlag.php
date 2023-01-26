@@ -79,12 +79,12 @@
 
 <form action="saveVerlag.php" method="post">
   <div class="form-element">
-    <label for="verlagname">Verlag:</label>
-    <input type="text" name="verlagname" id="verlagname">
+    <label for="name">Verlag:</label>
+    <input type="text" name="name" id="name">
   </div>
   <div class="form-element">
-    <label for="kommentar">Anmerkungen:</label>
-    <input type="text" name="kommentar" id="kommentar">
+    <label for="comment">Anmerkungen:</label>
+    <input type="text" name="comment" id="comment">
   </div>
   <input type="submit" value="Upload" name="submit"  class="btn btn-light" 
   onclick="alert('New Verlag added!'); location.href = 'addVerlag.php'; return true;" /><br><br>
