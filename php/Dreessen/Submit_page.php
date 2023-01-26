@@ -11,7 +11,7 @@ include '../dreessen/Server_connect.php'
     <body>
         <div class="container">    
             <!--lässt jemanden die Seite erst sehen wenn eingloggt -->
-            <?php// if ($login) { ?>
+            <?php if ($login) { ?>
                 <form action="Submit.php" method="post">
                     <div class="row">
                         <div class="col-md-4 mb-3">
@@ -98,10 +98,10 @@ include '../dreessen/Server_connect.php'
                     <p>
                     <button class="btn btn-primary" type="submit">Submit form</button>
                         <!--bis hier--> 
-                <?php //} ?>
+                <?php } ?>
                 <!--Not Loged In-->
-                <?php //if($user_role != "1" && $user_role != "2")
-                   // echo '<h1>Error 401</h1><p> <h1> Nicht autorisierter Zugriff </h1>'
+                <?php if($user_role != "1" && $user_role != "2")
+                    echo '<h1>Error 401</h1><p> <h1> Nicht autorisierter Zugriff </h1>'
                 ?>        
             </form>
         </main>

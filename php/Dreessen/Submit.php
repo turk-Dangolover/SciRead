@@ -1,3 +1,5 @@
+<?php include_once 'navbar.php'
+ ?>
 <html>
     <body>
         <?php
@@ -28,9 +30,9 @@
         $id = $stmt->fetch(PDO::FETCH_ASSOC);
         $vartypid =$id['type_id'];
         //alles zusammengelegt
-        $newId = (executeSQL("SELECT max(id) FROM books")->fetch())[0]+1;
-        $insertLine = "INSERT INTO literature(literature_id, pages, author, title, published_date, comment, fachbereich_id, type_id, publisher_id, creation_date)
-        VALUES ($newId,'$varpages','$varauthor','$vartitel','$varpublished','$vardescription', '$varfachbereichid','$vartypid','$varverlagid','current_timestamp');";
+        $newId = (executeSQL("SELECT max(literatur_id) FROM literatur")->fetch())[0]+1;
+        $insertLine = "INSERT INTO literatur(literatur_id, pages, author, title, published_date, comment, fachbereich_id, type_id, publisher_id, user_id)
+        VALUES ($newId,'$varpages','$varauthor','$vartitel','$varpublished','$vardescription', '$varfachbereichid','$vartypid','$varverlagid','$user_role');";
         executeSQL($insertLine);
         echo "Literature saved!";
 		?>
