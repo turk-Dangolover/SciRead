@@ -22,7 +22,7 @@ Beschreibung: Seite zum Ändern des Passworts
 <body>
 <?php
 // Navbar einbinden
-include_once "navbar.php";
+include_once "../Dreessen/navbar.php";
 // Verbindung zur Datenbank
 require 'connect.php';
 // Holt die Rolle des Users aus der Session

@@ -16,8 +16,11 @@ $password2 = $_POST['kennwort2'];
 
 // Überprüfen ob der User schon existiert
 $query = 'SELECT * FROM users WHERE (email = :email)';
-$isUserDubplicate = $dbh->exec($query)>0;
-if ($isUserDubplicate) {
+$isUserDubplicate = $dbh->prepare($query);
+$isUserDubplicate->execute(['email' => $email]);
+$countUser = $isUserDubplicate->rowCount();
+
+if ($countUser > 0) {
     // Fehlermeldung ausgeben 
     ?>
     <script>
