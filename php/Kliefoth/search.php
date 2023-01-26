@@ -11,8 +11,8 @@
 
 <body>
     <?php
-    include_once "../Dressen/navbar.php";
-    require_once "../Dressen/Server_connect.php";
+    include_once "../Dreessen/navbar.php";
+    require_once "../Dreessen/Server_connect.php";
     if (isset($_POST['titel']) || isset($_GET['titel'])) {
         if (isset($_POST['titel'])) {
             $titel = $_POST['titel'];
