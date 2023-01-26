@@ -12,6 +12,9 @@ include '../dreessen/Server_connect.php'
         <div class="container">    
             <!--lässt jemanden die Seite erst sehen wenn eingloggt -->
             <?php if ($login) { ?>
+                <div class="card-header">
+                    <h3>Hinzufügen<h3>
+                </div>
                 <form action="Submit.php" method="post">
                     <div class="row">
                         <div class="col-md-4 mb-3">

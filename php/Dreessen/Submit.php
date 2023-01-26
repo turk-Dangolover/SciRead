@@ -34,7 +34,7 @@
         $insertLine = "INSERT INTO literatur(literatur_id, pages, author, title, published_date, comment, fachbereich_id, type_id, publisher_id, user_id)
         VALUES ($newId,'$varpages','$varauthor','$vartitel','$varpublished','$vardescription', '$varfachbereichid','$vartypid','$varverlagid','$user_role');";
         executeSQL($insertLine);
-        echo "Literature saved!";
+        echo "<div class= container><div class=card-header><h3>Literature gesichert <h3></div></div>";
 		?>
     </body>
 </html>
