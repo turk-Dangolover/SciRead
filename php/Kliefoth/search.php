@@ -34,7 +34,9 @@
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
     }
-    $user_id = $_SESSION['user_id'];
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+    }
     if (isset($use)) {
         if ($use === "addbookmark") {
             $stmt = $dbConnection->prepare("INSERT INTO bookmark (literatur_id,user_id) VALUES (:lit_id,:user_id)");
