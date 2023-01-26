@@ -69,7 +69,7 @@ if($role == '1'){
                                 } else {
                                     echo '<td>Kein Rolle vergeben</td>';
                                 }
-                                echo '<td><a class="btn btn-danger role="button" href="function_delete_account.php?id=' . $row['user_id'] . '">Löschen</a></td>';
+                                echo '<td><a class="btn btn-danger role="button" href="#" onclick="deleteAccount(' . $row['user_id'] . ')">Löschen</a></td>';
                                 echo '</tr>';                                                        
                             }
                             ?>
@@ -81,6 +81,9 @@ if($role == '1'){
         </div>
 </div>
 <?php
+include_once "../Dreessen/footer.php";
+?>
+<?php
    } else {
     // Falls der User kein Admin ist, wird Ihn eine Fehlermeldung angezeigt
     include_once "401.php";
@@ -88,4 +91,15 @@ if($role == '1'){
 ?>
 </body>
 </html>
-    
+
+<script>
+function deleteAccount(id) {
+    var id = id;
+    var confirm = confirm("Möchten Sie diesen Account wirklich löschen?");
+    if (confirm == true) {
+        window.location.href = "function_delete_account.php?id=" + id;
+    } else {
+        window.location.href = "page_admin_accounts.php";
+    }
+}
+</script>   

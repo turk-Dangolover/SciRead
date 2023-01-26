@@ -12,5 +12,8 @@ Beschreibung: Verarbeitet die Daten aus dem Formular und ändert das Passwort de
             </div>
         </div>
     </div>
+    <?php
+include_once "../Dreessen/footer.php";
+?>
 </body>
 </html>

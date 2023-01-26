@@ -53,5 +53,8 @@ if(!($role == '1')){
         </div>
     </div>
 </div>
+<?php
+include_once "../Dreessen/footer.php";
+?>
 </body>
 </html>
