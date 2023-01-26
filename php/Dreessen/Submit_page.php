@@ -104,7 +104,7 @@ include '../dreessen/Server_connect.php'
                 <?php } ?>
                 <!--Not Loged In-->
                 <?php if($user_role != "1" && $user_role != "2")
-                    echo '<h1>Error 401</h1><p> <h1> Nicht autorisierter Zugriff </h1>'
+                    include_once '../Cetin/401.php'
                 ?>        
             </form>
         </main>
