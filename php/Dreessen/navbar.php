@@ -37,7 +37,7 @@ if(isset($_SESSION['roles_id'])){
                 <a class="text-muted" href="#"></a>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="Homepage.php">SciRead</a>
+                <a class="blog-header-logo text-dark" href="../Dreessen/Homepage.php">SciRead</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="text-muted" href="#">
@@ -58,7 +58,7 @@ if(isset($_SESSION['roles_id'])){
         <!--Start der Nav bar-->
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-          <a class="p-2 text-muted" href="#">Übersicht</a>
+          <a class="p-2 text-muted" href="../Kliefoth/user_book_search.php">Übersicht</a>
           <?php if ($login){
             echo '<a class="p-2 text-muted" href="../Dreessen/Submit.php">Hinzufügen</a>';
             echo '<a class="p-2 text-muted" href="../Cetin/page_profile.php">User</a>';
