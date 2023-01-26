@@ -60,7 +60,7 @@ if(isset($_SESSION['roles_id'])){
         <nav class="nav d-flex justify-content-between">
           <a class="p-2 text-muted" href="../Kliefoth/search.php">Übersicht</a>
           <?php if ($login){
-            echo '<a class="p-2 text-muted" href="../Dreessen/Submit.php">Hinzufügen</a>';
+            echo '<a class="p-2 text-muted" href="../Dreessen/Submit_page.php">Hinzufügen</a>';
             echo '<a class="p-2 text-muted" href="../Cetin/page_profile.php">User</a>';
           }
           else{
