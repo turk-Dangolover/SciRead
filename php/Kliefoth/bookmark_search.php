@@ -147,7 +147,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-header">
-                    <h3>Suche</h3>
+                    <h3>Merkliste</h3>
                 </div>
                 <div class="card-body container-fluid">
                     <form action="bookmark_search.php" method="post" class="ms-5 me-5 mt-4 border-top">
