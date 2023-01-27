@@ -1,7 +1,6 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 10.01.2023
-Beschreibung: Verarbeitet die Daten aus dem Formular und ändert das Passwort des Benutzers
+Beschreibung: HTML-Seite für Fehler 401
 -->
 <body>
     <div class="container">

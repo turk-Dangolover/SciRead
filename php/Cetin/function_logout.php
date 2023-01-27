@@ -1,6 +1,5 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 13.01.2023
 Beschreibung: Loggt den Benutzer aus
 -->
 

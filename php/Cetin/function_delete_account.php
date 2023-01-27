@@ -1,7 +1,6 @@
 
 <!--
 Erstellt von Cem Cetin
-Datum: 05.01.2023
 Beschreibung: Zum Löschen eines Accounts oder zum Löschen des eigenen Accounts
 -->
 <?php
@@ -9,25 +8,25 @@ Beschreibung: Zum Löschen eines Accounts oder zum Löschen des eigenen Accounts
 require 'connect.php';
 // Startet die Session
 session_start();
-$role = $_SESSION['roles_id'];
 // Falls der Benutzer nicht angemeldet ist, erscheint eine Fehlermeldung
-if($role == 'null'){
-    header('Location: 401.php');
+if (!isset($_SESSION['user_id'])) {
+    header('Location: page_delete_own_account.php');
 }
+$role = $_SESSION['roles_id'];
 // Die Funktion wird vom Admin ausgeführt, wenn er einen Account löschen möchte
 if ($role == '1') {
     if (isset($_GET['id'])) {
         // Holt die ID des Benutzers aus der URL
         $id = $_GET['id'];
-        $query = 'DELETE FROM users WHERE user_id = :id';
-        $daten = [':id' => $id];
+        $query = 'DELETE FROM users WHERE user_id = :user_id';
         // Führt die Query aus
         try {
-            $res = $dbh->prepare($query);
-            $res->execute($daten);
+            $stmt = $dbh->prepare($query);
+            $stmt->bindValue(':user_id', $id);
+            $stmt->execute();
             header('Location: page_admin_accounts.php');
         } catch (PDOException $e) {
-            echo 'Query error.';
+           echo "Verbindung fehlgeschlagen: " . $e->getMessage();
             die();
         }
     }}
@@ -39,11 +38,16 @@ if ($role == '2') {
     $user_id = $_SESSION['user_id'];
 
     // Holt das Passwort des Benutzers aus der Datenbank
-    $stmt = $dbh->prepare("SELECT passwort FROM users WHERE user_id = :user_id");
-    $stmt->bindParam(':user_id', $user_id);
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $verify = password_verify($passwort_aktuell, $row['passwort']);
+    try{
+        $stmt = $dbh->prepare("SELECT passwort FROM users WHERE user_id = :user_id");
+        $stmt->bindValue(':user_id', $user_id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $verify = password_verify($passwort_aktuell, $row['passwort']);}
+    catch(PDOException $e){
+        echo "Verbindung fehlgeschlagen: " . $e->getMessage();
+        die();
+}
     // Falls das Passwort falsch ist, erscheint eine Fehlermeldung
     if(!($verify)){
         ?>
@@ -56,13 +60,13 @@ if ($role == '2') {
     }
     // Falls das Passwort richtig ist, wird der Account gelöscht
         $id = $_SESSION['user_id'];
-        $query = 'DELETE FROM users WHERE user_id = :id';
-        $daten = [':id' => $id];
-        try {
-            $res = $dbh->prepare($query);
-            $res->execute($daten);
-        } catch (PDOException $e) {
-            echo 'Query error.';
+        $query = 'DELETE FROM users WHERE user_id = :user_id';
+        try{
+            $stmt = $dbh->prepare($query);
+            $stmt->bindValue(':user_id', $id);
+            $stmt->execute();
+        } catch (PDOException $e){
+           echo "Verbindung fehlgeschlagen: " . $e->getMessage();
             die();
         }
         // Die Session wird beendet

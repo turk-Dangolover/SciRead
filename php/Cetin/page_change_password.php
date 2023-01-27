@@ -55,7 +55,7 @@ include_once "401.php";
 				<label for="confirm_password">Neues Passwort bestätigen:</label>
 				<input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
 			</div>
-			<input type="submit" name="submit" class="btn btn-primary" value="submit">
+			<input type="submit" name="submit" class="btn btn-primary" value="Passwort ändern">
 		</form>
 		<br>
 	</div>

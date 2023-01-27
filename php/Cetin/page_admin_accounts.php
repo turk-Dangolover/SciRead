@@ -69,7 +69,8 @@ if($role == '1'){
                                 } else {
                                     echo '<td>Kein Rolle vergeben</td>';
                                 }
-                                echo '<td><a class="btn btn-danger role="button" href="#" onclick="deleteAccount(' . $row['user_id'] . ')">Löschen</a></td>';
+                                echo '<td><button class="btn btn-danger" onclick="deleteAccount(' . $row['user_id'] . ')">Löschen</button></td>';
+
                                 echo '</tr>';                                                        
                             }
                             ?>
@@ -90,16 +91,16 @@ include_once "../Dreessen/footer.php";
    }
 ?>
 </body>
-</html>
-
-<script>
+<script type="text/javascript">
 function deleteAccount(id) {
     var id = id;
-    var confirm = confirm("Möchten Sie diesen Account wirklich löschen?");
-    if (confirm == true) {
+    var confirm = window.confirm('Möchten Sie diesen Account wirklich löschen?');
+    if (confirm)
+    {
         window.location.href = "function_delete_account.php?id=" + id;
     } else {
         window.location.href = "page_admin_accounts.php";
     }
 }
-</script>   
+</script>  
+</html>

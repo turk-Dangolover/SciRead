@@ -46,7 +46,7 @@ if(!($role == '1')){
                     <div class="list-group">
                         <h4 class="list-group-item list-group-item-action active">Listen</h4>
                         <a href="page_admin_accounts.php" class="list-group-item list-group-item-action ">Liste aller Accounts</a>
-                        <a href="#" class="list-group-item list-group-item-action ">Datenbank Entitäten</a>
+                        <a href="../Lau/Administrationsbereich.php" class="list-group-item list-group-item-action ">Datenbank Entitäten</a>
                     </div>
                 </div>
             </div>
