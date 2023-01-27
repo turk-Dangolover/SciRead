@@ -6,6 +6,8 @@ include '../dreessen/Server_connect.php'
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <title>SciRead|Hinzufügen </title>
     </head>
     <body>
@@ -17,7 +19,7 @@ include '../dreessen/Server_connect.php'
                         <h3>Hinzufügen<h3>
                     </div>
                 </div>
-                <div class="card-body text-center container-fluid">   
+                <div class="card-body container-fluid border">   
                     <form action="Submit.php" method="post">
                         <div class="row">
                             <div class="col-md-4 mb-3">
@@ -104,14 +106,14 @@ include '../dreessen/Server_connect.php'
                         <p>
                         <button class="btn btn-primary" type="submit">Submit form</button>
                             <!--bis hier--> 
-                    <?php } ?>
-                    <!--Not Loged In-->
-                    <?php if($user_role != "1" && $user_role != "2")
-                        include_once '../Cetin/401.php'
-                    ?>        
-                </form>
-            </div>    
-        </main>
+                        <?php } ?>
+                        <!--Not Loged In-->
+                        <?php if($user_role != "1" && $user_role != "2")
+                            include_once '../Cetin/401.php'
+                        ?>        
+                    </form>
+                </div>        
+        </div>
     
     </body>
     <form >
