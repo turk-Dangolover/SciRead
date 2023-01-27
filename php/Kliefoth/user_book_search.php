@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suche</title>
+    <title>SciRead | Suche</title>
 </head>
 
 <body>
@@ -73,6 +73,10 @@
                 if ($user_id === $book[7]) {
     ?>
                     <div class="container">
+
+                        <div class="card-header">
+                            <h3>Suche</h3>
+                        </div>
                         <div class="row align-items-center ms-5 me-5 mt-5 border-top">
                             <p class="col pt-3 pb-3 mb-0 text-center">Wollen Sie wirklich das Buch löschen?</p>
                         </div>
@@ -132,6 +136,9 @@
                 if ($user_id === $book[7]) {
                 ?>
                     <div class="container">
+                        <div class="card-header">
+                            <h3>Suche</h3>
+                        </div>
                         <form action="user_book_search.php?use=update&id=<?php echo $id ?>&agreed=1" method="post" class="ms-5 me-5 mt-4 border-top">
                             <div class="pt-3 mb-3 row">
                                 <div class="col">
@@ -196,6 +203,10 @@
         ?>
         <!-- #region Search Settings-->
         <div class="container">
+
+            <div class="card-header">
+                <h3>Suche</h3>
+            </div>
             <form action="user_book_search.php" method="post" class="ms-5 me-5 mt-4 border-top">
                 <div class="mb-3  row align-items-end">
                     <div class="col-auto">
@@ -204,7 +215,7 @@
                     </div>
                     <div class="col-auto">
                         <label for="search-filter" class="col-form-label">Sortieren:</label>
-                        <select class="form-select" name="search-filter" id="search-filter">
+                        <select class="form-control" name="search-filter" id="search-filter">
                             <option value="title ASC" <?php if ($sort === "ORDER BY title ASC") echo "selected" ?>>Titel ↓</option>
                             <option value="title DESC" <?php if ($sort === "ORDER BY title DESC") echo "selected" ?>>Titel ↑</option>
                             <option value="author ASC" <?php if ($sort === "ORDER BY author ASC") echo "selected" ?>>Autor ↓</option>
@@ -266,7 +277,7 @@
         <!-- #endregion -->
     <?php } ?>
         </div>
-        <?php include "footer.php" ?>
+        <?php include "../Dreessen/footer.php" ?>
 
 </body>
 

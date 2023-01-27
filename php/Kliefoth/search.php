@@ -6,8 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>Suche</title>
+    <title>SciRead | Suche</title>
 </head>
 
 <body>
@@ -52,27 +51,37 @@
     }
     ?>
     <div class="container">
+
+        <div class="card-header">
+            <h3>Suche</h3>
+        </div>
         <form action="search.php" method="post" class="ms-5 me-5 border-top">
             <div class="mb-3 mt-3 row align-items-end">
                 <div class="col-auto">
-                    <label for="titel" class=" col-form-label">Suche:</label>
-                    <input class="form-control" type="search" name="titel" id="titel" placeholder="Titel eingeben" value="<?php echo $titel ?>" autocomplete="off">
+                    <div class="form-group">
+                        <label for="titel" class="col-form-label">Suche:</label>
+                        <input class="form-control" type="search" name="titel" id="titel" placeholder="Titel eingeben" value="<?php echo $titel ?>" autocomplete="off">
+                    </div>
                 </div>
                 <div class="col-auto">
-                    <label for="search-filter" class="col-form-label">Sortieren:</label>
-                    <select class="form-select" name="search-filter" id="search-filter">
-                        <option value="title ASC" <?php if ($sort === "ORDER BY title ASC") echo "selected" ?>>Titel ↓</option>
-                        <option value="title DESC" <?php if ($sort === "ORDER BY title DESC") echo "selected" ?>>Titel ↑</option>
-                        <option value="author ASC" <?php if ($sort === "ORDER BY author ASC") echo "selected" ?>>Autor ↓</option>
-                        <option value="author DESC" <?php if ($sort === "ORDER BY author DESC") echo "selected" ?>>Autor ↑</option>
-                        <option value="pages ASC" <?php if ($sort === "ORDER BY pages ASC") echo "selected" ?>>Seitenanzahl ↓</option>
-                        <option value="pages DESC" <?php if ($sort === "ORDER BY pages DESC") echo "selected" ?>>Seitenanzahl ↑</option>
-                        <option value="published_date ASC" <?php if ($sort === "ORDER BY published_date ASC") echo "selected" ?>>Veröffentlichungsdatum ↓</option>
-                        <option value="published_date DESC" <?php if ($sort === "ORDER BY published_date DESC") echo "selected" ?>>Veröffentlichungsdatum ↑</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="search-filter" class="col-form-label">Sortieren:</label>
+                        <select class="form-control" name="search-filter" id="search-filter">
+                            <option value="title ASC" <?php if ($sort === "ORDER BY title ASC") echo "selected" ?>>Titel ↓</option>
+                            <option value="title DESC" <?php if ($sort === "ORDER BY title DESC") echo "selected" ?>>Titel ↑</option>
+                            <option value="author ASC" <?php if ($sort === "ORDER BY author ASC") echo "selected" ?>>Autor ↓</option>
+                            <option value="author DESC" <?php if ($sort === "ORDER BY author DESC") echo "selected" ?>>Autor ↑</option>
+                            <option value="pages ASC" <?php if ($sort === "ORDER BY pages ASC") echo "selected" ?>>Seitenanzahl ↓</option>
+                            <option value="pages DESC" <?php if ($sort === "ORDER BY pages DESC") echo "selected" ?>>Seitenanzahl ↑</option>
+                            <option value="published_date ASC" <?php if ($sort === "ORDER BY published_date ASC") echo "selected" ?>>Veröffentlichungsdatum ↓</option>
+                            <option value="published_date DESC" <?php if ($sort === "ORDER BY published_date DESC") echo "selected" ?>>Veröffentlichungsdatum ↑</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-primary">Abschicken</button>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Abschicken</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -123,7 +132,7 @@
             <?php } ?>
         </div>
     </div>
-    <?php include "footer.php" ?>
+    <?php include "../Dreessen/footer.php" ?>
 </body>
 
 </html>
