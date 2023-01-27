@@ -37,20 +37,21 @@ include_once "401.php";
 }
  ?>
 <div class="container">
-	<div class="card-header">
-		<h3>Passwort ändern</h3>
-	</div>
 	<div class= "card">  
-	<div class="card-body container-fluid">
-		<form action="function_change_password.php" method="post" >
-			<div class="form-group">
-				<label for="current_password">Aktuelles Passwort:</label>
-				<input type="password" class="form-control" id="current_password" name="current_password" required>
-			</div>
-			<div class="form-group">
-				<label for="new_password">Neues Passwort:</label>
-				<input type="password" class="form-control" id="new_password" name="new_password" required>
-			</div>
+		<div class="card-header">
+			<h3>Passwort ändern</h3>
+		</div>
+	
+		<div class="card-body container-fluid">
+			<form action="function_change_password.php" method="post" >
+				<div class="form-group">
+					<label for="current_password">Aktuelles Passwort:</label>
+					<input type="password" class="form-control" id="current_password" name="current_password" required>
+				</div>
+				<div class="form-group">
+					<label for="new_password">Neues Passwort:</label>
+						<input type="password" class="form-control" id="new_password" name="new_password" required>
+				</div>
 			<div class="form-group">
 				<label for="confirm_password">Neues Passwort bestätigen:</label>
 				<input type="password" class="form-control" id="confirm_password" name="confirm_password" required>

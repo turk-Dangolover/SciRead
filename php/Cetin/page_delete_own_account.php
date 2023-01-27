@@ -37,10 +37,11 @@ include_once "401.php";
 }
  ?>
 <div class="container">
+<div class= "card"> 
 	<div class="card-header">
 		<h3>Account löschen</h3>
 	</div>
-	<div class= "card"> 
+	
 		<div class="card-body container-fluid">
 			<form action="function_delete_account.php" method="post">
 				<div class="form-group">
