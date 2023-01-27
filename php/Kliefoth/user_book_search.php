@@ -15,7 +15,8 @@
     include_once "../Dreessen/navbar.php";
     require_once "../Dreessen/Server_connect.php";
     if (!isset($_SESSION['user_id'])) {
-        echo "<script>window.location.href='../Cetin/page_login.php'</script>";
+        include_once('../Cetin/401.php');
+        return;
     }
     $user_id = $_SESSION['user_id'];
     if (isset($_GET['use'])) {
@@ -73,44 +74,45 @@
                 if ($user_id === $book[7]) {
     ?>
                     <div class="container">
-
-                        <div class="card-header">
-                            <h3>Suche</h3>
-                        </div>
-                        <div class="row align-items-center ms-5 me-5 mt-5 border-top">
-                            <p class="col pt-3 pb-3 mb-0 text-center">Wollen Sie wirklich das Buch löschen?</p>
-                        </div>
-                        <div class="row ms-5 me-5">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Titel</th>
-                                        <th scope="col">VerlagID</th>
-                                        <th scope="col">Seitenanzahl</th>
-                                        <th scope="col">TypID</th>
-                                        <th scope="col">Autor</th>
-                                        <th scope="col">Veröffentlichungsdatum</th>
-                                        <th scope="col">FachbereichID</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    echo "<tr>";
-                                    echo "<td>" . $book[0] . "</td>";
-                                    echo "<td>" . $book[1] . "</td>";
-                                    echo "<td>" . $book[2] . "</td>";
-                                    echo "<td>" . $book[3] . "</td>";
-                                    echo "<td>" . $book[4] . "</td>";
-                                    echo "<td>" . $book[5] . "</td>";
-                                    echo "<td>" . $book[6] . "</td>";
-                                    echo "</tr>";
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row ms-5 me-5 justify-content-evenly">
-                            <a href="user_book_search.php" class="col-4 btn btn-primary">←Zurück </a>
-                            <a class="col-4 btn btn-danger" href="user_book_search.php?use=delete&id=<?php echo $id ?>&agreed=1">Löschen?</a>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Suche</h3>
+                            </div>
+                            <div class="row align-items-center ms-5 me-5 mt-5 border-top">
+                                <p class="col pt-3 pb-3 mb-0 text-center">Wollen Sie wirklich das Buch löschen?</p>
+                            </div>
+                            <div class="row ms-5 me-5">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Titel</th>
+                                            <th scope="col">VerlagID</th>
+                                            <th scope="col">Seitenanzahl</th>
+                                            <th scope="col">TypID</th>
+                                            <th scope="col">Autor</th>
+                                            <th scope="col">Veröffentlichungsdatum</th>
+                                            <th scope="col">FachbereichID</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        echo "<tr>";
+                                        echo "<td>" . $book[0] . "</td>";
+                                        echo "<td>" . $book[1] . "</td>";
+                                        echo "<td>" . $book[2] . "</td>";
+                                        echo "<td>" . $book[3] . "</td>";
+                                        echo "<td>" . $book[4] . "</td>";
+                                        echo "<td>" . $book[5] . "</td>";
+                                        echo "<td>" . $book[6] . "</td>";
+                                        echo "</tr>";
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row ms-5 me-5 justify-content-evenly">
+                                <a href="user_book_search.php" class="col-4 btn btn-primary">←Zurück </a>
+                                <a class="col-4 btn btn-danger" href="user_book_search.php?use=delete&id=<?php echo $id ?>&agreed=1">Löschen?</a>
+                            </div>
                         </div>
                     </div>
                 <?php
@@ -136,51 +138,56 @@
                 if ($user_id === $book[7]) {
                 ?>
                     <div class="container">
-                        <div class="card-header">
-                            <h3>Suche</h3>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Suche</h3>
+                            </div>
+                            <div class="card-body text-center container-fluid">
+                                <form action="user_book_search.php?use=update&id=<?php echo $id ?>&agreed=1" method="post" class="ms-5 me-5 mt-4 border-top">
+                                    <div class="pt-3 mb-3 row">
+                                        <div class="col">
+                                            <label for="titel" class="col-form-label">Titel:</label>
+                                            <input type="text" class="form-control" name="title" id="title" placeholder="Titel" value="<?php echo $book[0] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="verlagid" class="col-form-label">VerlagID:</label>
+                                            <input type="text" class="form-control" name="verlagid" id="verlagid" placeholder="VerlagID" value="<?php echo $book[1] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="seitenzahl" class="col-form-label">Seitenzahl:</label>
+                                            <input type="text" class="form-control" name="seitenzahl" id="seitenzahl" placeholder="Seitenzahl" value="<?php echo $book[2] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="typid" class="col-form-label">TypID:</label>
+                                            <input type="text" class="form-control" name="typid" id="typid" placeholder="TypID" value="<?php echo $book[3] ?>" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="author" class="col-form-label">Autor:</label>
+                                            <input type="text" class="form-control" name="author" id="author" placeholder="Autor" value="<?php echo $book[4] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="veröffentlichungsdatum" class="col-form-label">Veröffentlichungsdatum:</label>
+                                            <input type="text" class="form-control" name="veröffentlichungsdatum" id="veröffentlichungsdatum" placeholder="Veröffentlichungsdatum" value="<?php echo $book[5] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="fachbereichid" class="col-form-label">FachbereichID:</label>
+                                            <input type="text" class="form-control" name="fachbereichid" id="fachbereichid" placeholder="FachbereichID" value="<?php echo $book[6] ?>" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 mt-3 row justify-content-center">
+                                        <div class="col-auto">
+                                            <a href="user_book_search.php" class="btn btn-primary">←Zurück </a>
+                                            <button type="submit" class="btn btn-danger">Änderung Abschicken</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
-                        <form action="user_book_search.php?use=update&id=<?php echo $id ?>&agreed=1" method="post" class="ms-5 me-5 mt-4 border-top">
-                            <div class="pt-3 mb-3 row">
-                                <div class="col">
-                                    <label for="titel" class="col-form-label">Titel:</label>
-                                    <input type="text" class="form-control" name="title" id="title" placeholder="Titel" value="<?php echo $book[0] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="verlagid" class="col-form-label">VerlagID:</label>
-                                    <input type="text" class="form-control" name="verlagid" id="verlagid" placeholder="VerlagID" value="<?php echo $book[1] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="seitenzahl" class="col-form-label">Seitenzahl:</label>
-                                    <input type="text" class="form-control" name="seitenzahl" id="seitenzahl" placeholder="Seitenzahl" value="<?php echo $book[2] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="typid" class="col-form-label">TypID:</label>
-                                    <input type="text" class="form-control" name="typid" id="typid" placeholder="TypID" value="<?php echo $book[3] ?>" autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <div class="col">
-                                    <label for="author" class="col-form-label">Autor:</label>
-                                    <input type="text" class="form-control" name="author" id="author" placeholder="Autor" value="<?php echo $book[4] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="veröffentlichungsdatum" class="col-form-label">Veröffentlichungsdatum:</label>
-                                    <input type="text" class="form-control" name="veröffentlichungsdatum" id="veröffentlichungsdatum" placeholder="Veröffentlichungsdatum" value="<?php echo $book[5] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="fachbereichid" class="col-form-label">FachbereichID:</label>
-                                    <input type="text" class="form-control" name="fachbereichid" id="fachbereichid" placeholder="FachbereichID" value="<?php echo $book[6] ?>" autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="mb-3 mt-3 row justify-content-center">
-                                <div class="col-auto">
-                                    <a href="user_book_search.php" class="btn btn-primary">←Zurück </a>
-                                    <button type="submit" class="btn btn-danger">Änderung Abschicken</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
 
         <?php
