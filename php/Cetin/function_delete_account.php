@@ -1,4 +1,3 @@
-
 <!--
 Erstellt von Cem Cetin
 Beschreibung: Zum Löschen eines Accounts oder zum Löschen des eigenen Accounts
