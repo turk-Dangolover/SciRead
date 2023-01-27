@@ -1,7 +1,6 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 07.01.2023
-Beschreibung: Verwaltung des Profils
+Beschreibung: Verwaltung des Profils und verlinkung zu den anderen Seiten
 -->
 
 <!DOCTYPE html>

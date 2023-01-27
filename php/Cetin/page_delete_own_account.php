@@ -1,6 +1,5 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 10.01.2023
 Beschreibung: Seite zum Löschen des eigenen Accounts
 -->
 
