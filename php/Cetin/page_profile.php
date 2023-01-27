@@ -48,7 +48,7 @@ if (!$login) {
       <div class="list-group">
         <h4 class="list-group-item list-group-item-action active">Account</h4>
         <a href="page_change_password.php" class="list-group-item list-group-item-action ">Passwort ändern</a>
-        <a href="page_delete_own_account.php" class="list-group-item list-group-item-action >Account löschen</a>
+        <a href="page_delete_own_account.php" class="list-group-item list-group-item-action">Account löschen</a>
       </div>
     </div>
   </div>
