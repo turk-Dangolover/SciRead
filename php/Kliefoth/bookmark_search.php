@@ -119,18 +119,18 @@
                                     </table>
                                 </div>
                                 <div class="row ms-5 me-5 justify-content-evenly">
-                                    <a href="own_book_search.php" class="col-4 btn btn-primary">←Zurück </a>
-                                    <a class="col-4 btn btn-danger" href="own_book_search.php?use=delete&id=<?php echo $id ?>&agreed=1">Entfernen?</a>
+                                    <a href="bookmark_search.php" class="col-4 btn btn-primary">←Zurück </a>
+                                    <a class="col-4 btn btn-danger" href="bookmark_search.php?use=delete&id=<?php echo $id ?>&agreed=1">Entfernen?</a>
                                 </div>
                             </div>
                         </div>
                     </div>
         <?php
                 } else {
-                    header("Location: own_book_search.php", true, 302);
+                    header("Location: bookmark_search.php", true, 302);
                 }
             } else {
-                header("Location: own_book_search.php", true, 302);
+                header("Location: bookmark_search.php", true, 302);
             }
         } else {
             $book_userid = executeSQL("SELECT user_id FROM public.bookmark WHERE literatur_id='$id'")->fetch()[0];
@@ -139,7 +139,7 @@
                     executeSQL('DELETE FROM public.bookmark WHERE literatur_id=' . $id . ' AND user_id=' . $user_id)->fetch();
                 }
             }
-            echo "<script>window.location.href='own_book_search.php'</script>";
+            echo "<script>window.location.href='bookmark_search.php'</script>";
         }
     } else {
         ?>
@@ -150,7 +150,7 @@
                     <h3>Suche</h3>
                 </div>
                 <div class="card-body container-fluid">
-                    <form action="own_book_search.php" method="post" class="ms-5 me-5 mt-4 border-top">
+                    <form action="bookmark_search.php" method="post" class="ms-5 me-5 mt-4 border-top">
                         <div class="mb-3  row align-items-end">
                             <div class="col-auto">
                                 <label for="titel" class=" col-form-label">Suche:</label>
@@ -205,7 +205,7 @@
                                         echo "<td>" . $b[5] . "</td>";
                                         echo "<td>" . $b[6] . "</td>";
                                         echo "<td>" . $b[7] . "</td>";
-                                        echo "<td><a href='own_book_search.php?use=delete&id=$b[0]' class='btn btn-danger'>Löschen</a></td>";
+                                        echo "<td><a href='bookmark_search.php?use=delete&id=$b[0]' class='btn btn-danger'>Löschen</a></td>";
                                         echo "</tr>";
                                     }
                                     ?>
