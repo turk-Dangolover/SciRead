@@ -127,10 +127,10 @@
                     </div>
         <?php
                 } else {
-                    header("Location: bookmark_search.php", true, 302);
+                    echo "<script>window.location.href='bookmark_search.php'</script>";
                 }
             } else {
-                header("Location: bookmark_search.php", true, 302);
+                echo "<script>window.location.href='bookmark_search.php'</script>";
             }
         } else {
             $book_userid = executeSQL("SELECT user_id FROM public.bookmark WHERE literatur_id='$id'")->fetch()[0];
