@@ -1,6 +1,5 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 01.01.2023
 Beschreibung: Bereich für den Admin mit allen Funktionen
 -->
 <!DOCTYPE html>
