@@ -15,6 +15,31 @@ $role = $_SESSION['roles_id'];
 // Die Funktion wird vom Admin ausgeführt, wenn er einen Account löschen möchte
 if ($role == '1') {
     if (isset($_GET['id'])) {
+
+        $changesql = 'UPDATE literatur SET user_id = :filler WHERE user_id = :user_id';
+        try {
+            $stmt = $dbh->prepare($changesql);
+            $stmt->bindValue(':user_id', $id);
+            $stmt->bindValue(':filler', NULL);
+            $stmt->execute();
+            header('Location: page_admin_accounts.php');
+        } catch (PDOException $e) {
+           echo "Verbindung fehlgeschlagen: " . $e->getMessage();
+            die();
+        }
+        $changesql2 = 'UPDATE bookmark SET user_id = :filler WHERE user_id = :user_id';
+        try {
+            $stmt = $dbh->prepare($changesql2);
+            $stmt->bindValue(':user_id', $id);
+            $stmt->bindValue(':filler', NULL);
+            $stmt->execute();
+            header('Location: page_admin_accounts.php');
+        } catch (PDOException $e) {
+           echo "Verbindung fehlgeschlagen: " . $e->getMessage();
+            die();
+        }
+
+
         // Holt die ID des Benutzers aus der URL
         $id = $_GET['id'];
         $query = 'DELETE FROM users WHERE user_id = :user_id';
@@ -32,6 +57,28 @@ if ($role == '1') {
     
 // Die Funktion wird vom Benutzer ausgeführt, wenn er seinen eigenen Account löschen möchte
 if ($role == '2') {
+    $changesql = 'UPDATE literatur SET user_id = :filler WHERE user_id = :user_id';
+        try {
+            $stmt = $dbh->prepare($changesql);
+            $stmt->bindValue(':user_id', $id);
+            $stmt->bindValue(':filler', NULL);
+            $stmt->execute();
+            header('Location: page_admin_accounts.php');
+        } catch (PDOException $e) {
+           echo "Verbindung fehlgeschlagen: " . $e->getMessage();
+            die();
+        }
+        $changesql2 = 'UPDATE bookmark SET user_id = :filler WHERE user_id = :user_id';
+        try {
+            $stmt = $dbh->prepare($changesql2);
+            $stmt->bindValue(':user_id', $id);
+            $stmt->bindValue(':filler', NULL);
+            $stmt->execute();
+            header('Location: page_admin_accounts.php');
+        } catch (PDOException $e) {
+           echo "Verbindung fehlgeschlagen: " . $e->getMessage();
+            die();
+        }
     // Fängt die Daten aus dem Formular ab
     $passwort_aktuell = $_POST['current_password'];
     $user_id = $_SESSION['user_id'];
