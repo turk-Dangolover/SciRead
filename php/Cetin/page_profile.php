@@ -43,7 +43,7 @@ if (!$login) {
       <div class="card-body text-center container-fluid">
         <div class="list-group">
           <h4 class="list-group-item list-group-item-action active">Persönliche Daten</h4>
-          <a href="../Kliefoth/bookmark.php" class="list-group-item list-group-item-action ">Persönliche Einträge anzeigen</a>
+          <a href="../Kliefoth/bookmark_search.php" class="list-group-item list-group-item-action ">Persönliche Einträge anzeigen</a>
           <a href="#" class="list-group-item list-group-item-action">Persönlichen Eintrag hinzufügen</a>
           <a href="../Kliefoth/user_book_search.php" class="list-group-item list-group-item-action">Datenbankeinträge anzeigen</a>
           <a href="#" class="list-group-item list-group-item-action">Datenbankeintrag hinzufügen</a>
