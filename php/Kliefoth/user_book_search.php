@@ -65,11 +65,11 @@
         $sort = "ORDER BY Title ASC";
     }
 
-    $books = executeSQL("SELECT literatur_id,title,publisher_id,pages,type_id,author,published_date,fachbereich_id FROM public.\"literatur\" WHERE title LIKE '$titel%' AND user_id = '$user_id' $sort")->fetchAll();
+    $books = executeSQL("SELECT book.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' AND book.user_id = '$user_id' $sort")->fetchAll();
 
     if ($use === "delete" && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("SELECT title,publisher_id,pages,type_id,author,published_date,fachbereich_id,user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,book.user_id FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
     ?>
@@ -133,7 +133,7 @@
         }
     } elseif ($use === "update"  && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("Select title,publisher_id,pages,type_id,author,published_date,fachbereich_id,user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,book.user_id FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
                 ?>
@@ -150,15 +150,15 @@
                                             <input type="text" class="form-control" name="title" id="title" placeholder="Titel" value="<?php echo $book[0] ?>" autocomplete="off">
                                         </div>
                                         <div class="col">
-                                            <label for="verlagid" class="col-form-label">VerlagID:</label>
-                                            <input type="text" class="form-control" name="verlagid" id="verlagid" placeholder="VerlagID" value="<?php echo $book[1] ?>" autocomplete="off">
+                                            <label for="verlagid" class="col-form-label">Verlag:</label>
+                                            <input type="text" class="form-control" name="verlagid" id="verlagid" placeholder="Verlag" value="<?php echo $book[1] ?>" autocomplete="off">
                                         </div>
                                         <div class="col">
                                             <label for="seitenzahl" class="col-form-label">Seitenzahl:</label>
                                             <input type="text" class="form-control" name="seitenzahl" id="seitenzahl" placeholder="Seitenzahl" value="<?php echo $book[2] ?>" autocomplete="off">
                                         </div>
                                         <div class="col">
-                                            <label for="typid" class="col-form-label">TypID:</label>
+                                            <label for="typid" class="col-form-label">Typ:</label>
                                             <input type="text" class="form-control" name="typid" id="typid" placeholder="TypID" value="<?php echo $book[3] ?>" autocomplete="off">
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@
                                             <input type="text" class="form-control" name="veröffentlichungsdatum" id="veröffentlichungsdatum" placeholder="Veröffentlichungsdatum" value="<?php echo $book[5] ?>" autocomplete="off">
                                         </div>
                                         <div class="col">
-                                            <label for="fachbereichid" class="col-form-label">FachbereichID:</label>
+                                            <label for="fachbereichid" class="col-form-label">Fachbereich:</label>
                                             <input type="text" class="form-control" name="fachbereichid" id="fachbereichid" placeholder="FachbereichID" value="<?php echo $book[6] ?>" autocomplete="off">
                                         </div>
                                     </div>
