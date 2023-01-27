@@ -75,5 +75,5 @@ $_SESSION['user_id'] = $row['user_id'];
 $_SESSION['roles_id'] = $row['roles_id'];
 $_SESSION['login'] = TRUE;
 // Weiterleiten auf die Startseite.
-header('Location: page_profile.php');
+header('Location: ../Dreessen/Homepage.php');
 ?>

@@ -40,7 +40,7 @@ if (!$login) {
         <h4 class="list-group-item list-group-item-action active">Persönliche Daten</h4>
         <a href="../Kliefoth/bookmark_search.php" class="list-group-item list-group-item-action ">Persönliche Einträge anzeigen</a>
         <a href="../Kliefoth/user_book_search.php" class="list-group-item list-group-item-action">Datenbankeinträge anzeigen</a>
-        <a href="#" class="list-group-item list-group-item-action">Datenbankeintrag hinzufügen</a>
+        <a href="../Dreessen/submit_page.php" class="list-group-item list-group-item-action">Datenbankeintrag hinzufügen</a>
       </div>
       <br>
       <div class="list-group">
