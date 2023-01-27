@@ -14,8 +14,10 @@
     <?php
     include_once "../Dreessen/navbar.php";
     require_once "../Dreessen/Server_connect.php";
+    //Überprüft ob der Nutzer angemeldet ist
     if (!isset($_SESSION['user_id'])) {
         include_once('../Cetin/401.php');
+        //Falls man nicht angemeldet ist bekommt der Nutzer eine 401 Sprich eine "Nicht Autorisiert" Seite angezeigt
         return;
     }
     $user_id = $_SESSION['user_id'];
@@ -24,20 +26,19 @@
     } else {
         $use = "";
     }
+    //Diese Variable wird für die Update/Löschen Funktion benutzt
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
     }
+    //Diese Variable wird für die Löschen Funktion benutzt
     if (isset($_GET['agreed'])) {
         $agreed = $_GET['agreed'];
     }
+    //Diese Variable wird für die Update Funktion benutzt
     if (isset($_POST['agreed'])) {
         $agreed = $_POST['agreed'];
     }
-    if (isset($_POST['titel'])) {
-        $titel = $_POST['titel'];
-    } else {
-        $titel = "";
-    }
+    //Diese Variablen werden für die Update Funktion benutzt
     if (isset($_POST['title'])) {
         $title = $_POST['title'];
     }
@@ -59,17 +60,24 @@
     if (isset($_POST['fachbereichid'])) {
         $fachbereichid = $_POST['fachbereichid'];
     }
+
+    //Diese Variablen werden von der Suche benutzt
+    if (isset($_POST['titel'])) {
+        $titel = $_POST['titel'];
+    } else {
+        $titel = "";
+    }
     if (isset($_POST['search-filter'])) {
         $sort = "ORDER BY " . $_POST['search-filter'];
     } else {
         $sort = "ORDER BY Title ASC";
     }
 
-    $books = executeSQL("SELECT book.literatur_id,title,publisher_id,pages,type_id,author,published_date,fachbereich_id FROM public.\"bookmark\" book JOIN public.\"literatur\" lit USING (literatur_id) WHERE title LIKE '$titel%' AND book.user_id = '$user_id' $sort")->fetchAll();
+    $books = executeSQL("SELECT book.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' AND book.user_id = '$user_id' $sort")->fetchAll();
 
     if ($use === "delete" && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("SELECT title,publisher_id,pages,type_id,author,published_date,fachbereich_id,book.user_id FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) WHERE literatur_id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,book.user_id FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
     ?>
@@ -82,29 +90,29 @@
                                 <div class="row align-items-center ms-5 me-5 mt-5 border-top">
                                     <p class="col pt-3 pb-3 mb-0 text-center">Wollen Sie wirklich das Buch von der Merkliste entfernen?</p>
                                 </div>
-                                <div class="row ms-5 me-5´text-center">
+                                <div class="row ms-5 me-5 text-center">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Titel</th>
-                                                <th scope="col">VerlagID</th>
+                                                <th scope="col">Verlag</th>
                                                 <th scope="col">Seitenanzahl</th>
-                                                <th scope="col">TypID</th>
+                                                <th scope="col">Typ</th>
                                                 <th scope="col">Autor</th>
                                                 <th scope="col">Veröffentlichungsdatum</th>
-                                                <th scope="col">FachbereichID</th>
+                                                <th scope="col">Fachbereich</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             echo "<tr>";
-                                            echo "<td>" . $book[0] . "</td>";
-                                            echo "<td>" . $book[1] . "</td>";
-                                            echo "<td>" . $book[2] . "</td>";
-                                            echo "<td>" . $book[3] . "</td>";
-                                            echo "<td>" . $book[4] . "</td>";
-                                            echo "<td>" . $book[5] . "</td>";
-                                            echo "<td>" . $book[6] . "</td>";
+                                            echo "<td>" . $book[0] . "</td>"; //Titel
+                                            echo "<td>" . $book[1] . "</td>"; //Verlag
+                                            echo "<td>" . $book[2] . "</td>"; //Seitenanzahl
+                                            echo "<td>" . $book[3] . "</td>"; //TypID
+                                            echo "<td>" . $book[4] . "</td>"; //Autor
+                                            echo "<td>" . $book[5] . "</td>"; //Veröffentlichungsdatum
+                                            echo "<td>" . $book[6] . "</td>"; //FachbereichID
                                             echo "</tr>";
                                             ?>
                                         </tbody>
@@ -174,12 +182,12 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Titel</th>
-                                        <th scope="col">VerlagID</th>
+                                        <th scope="col">Verlag</th>
                                         <th scope="col">Seitenanzahl</th>
-                                        <th scope="col">TypID</th>
+                                        <th scope="col">Typ</th>
                                         <th scope="col">Autor</th>
                                         <th scope="col">Veröffentlichungsdatum</th>
-                                        <th scope="col">FachbereichID</th>
+                                        <th scope="col">Fachbereich</th>
                                         <th></th>
                                     </tr>
                                 </thead>
