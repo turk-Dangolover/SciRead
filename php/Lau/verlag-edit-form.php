@@ -1,19 +1,41 @@
-<?php
+
+<!Doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+    <body>
+    <?php include_once "../Dreessen/navbar.php"; ?>
+    <div class="container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Verlag</h3>
+                         </div>
+                         <?php
 $id=$_GET['publisher_id'];
 $verlag=$_GET['name'];
 $comment=$_GET['comment'];
 ?>
-<form action="update-verlag.php" method="post">
-  <input type="hidden" name="publisher_id" value="<?php echo $id; ?>">
-  <div class="form-element">
-    <label for="name">Verlag:</label>
-    <input type="text" name="newName" id="newName" value="<?php echo $verlag; ?>">
+<form tyle="margin-left:20px" action="update-verlag.php" method="post">
+<div class="col-md-12 mb-lg-4 ">
+<label for="name">Verlag:</label>
+<input type="hidden" name="publisher_id" value="<?php echo $id; ?>">
+<input type="text" class="form-control" name="newName" id="newName" value="<?php echo $verlag; ?>">
   </div>
-  <div class="form-element">
-    <label for="comment">Anmerkungen:</label>
-    <input type="text" name="newComment" id="newComment" value="<?php echo $comment; ?>">
+  <div class="col-md-12 mb-lg-4">
+              <label for="comment">Anmerkungen</label>
+    <input type="text" class="form-control" name="newComment" id="newComment" value="<?php echo $comment; ?>">
   </div>
+  <div class="col-md-12 mb-lg-4 ">
   <input type="submit" value="Update" name="update"  class="btn btn-light" 
   onclick="alert('Verlag wurde aktualisiert!'); location.href = 'addVerlag.php'; return true;" /><br><br>
-
+</div>
 </form>
+<br><br>
+<?php include_once '../Dreessen/footer.php' ?>
+</body>
+
+</html>

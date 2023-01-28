@@ -12,16 +12,16 @@
   <div class="container">
     <div class="card">
       <div class="card-header">
-        <h3>Fachbereich</h3>
+        <h3>Fachbereiche</h3>
       </div>
 
       <div class="card-body">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Administrationsbereich.php">Adminbereich</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Fachbereich</li>
-            <li class="breadcrumb-item"><a href="addType.php">Typ</a></li>
-            <li class="breadcrumb-item"><a href="addVerlag.php">Verlag</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Fachbereiche</li>
+            <li class="breadcrumb-item"><a href="addType.php">Typen</a></li>
+            <li class="breadcrumb-item"><a href="addVerlag.php">Verläge</a></li>
           </ol>
         </nav>
         <form tyle="margin-left:20px" action="savefachbereich.php" method="post">
@@ -40,10 +40,6 @@
 </div>
 </div>
         </form>
-
-
-
-        <br><br>
         <?php
         include('addFachbereich display.php');
         ?>
@@ -52,8 +48,6 @@
   </div>
 
 
-  <?php include_once '../Dreessen/footer.php' ?>
+<?php include_once '../Dreessen/footer.php' ?>
 </body>
-
-
 </html>

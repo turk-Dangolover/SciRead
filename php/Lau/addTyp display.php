@@ -1,10 +1,21 @@
 <form method="post">
+<div class="mb-3 mt-3 row align-items-end">
+  <div class="col-auto">
+  <div class="form-group">
   <label for="sort">Sortieren nach:</label>
-   <select id="sort" name="sort">
+  <select class="form-control" id="sort" name="sort">
       <option value="type">Typ</option>
       <option value="type_id">ID</option>
    </select>
-  <input type="submit" value="Sortieren">
+   </div>
+</div>
+ 
+    <div class="col-auto">
+      <div class="form-group">
+        <button type="submit" class="btn btn-light">Abschicken</button>
+      </div>
+    </div>
+</div>
 </form>
 
 <div class="table-responsive"><table class="table">
@@ -30,22 +41,21 @@ if(isset($_POST['sort'])){
   $typen= executeSQL($sql)->fetchAll();
   }
 foreach ($typen as $row) {
-  echo "<tr>";
-  echo "<td>".$row['type_id']."</td>";
-  echo "<td>".$row['type']."</td>";
-  echo "<td>".$row['comment']."</td>"; 
-  echo '<td><form action="type-edit-form.php" method="GET">';
-  echo '<input type="hidden" name="type_id" value="'.$row['type_id'].'">';
-  echo '<input type="hidden" name="type" value="'.$row['type'].'">';
-  echo '<input type="hidden" name="comment" value="'.$row['comment'].'">';
-  echo '<input type="submit" name="edit" value="edit">';
-  echo '</form></td>';
-  echo '<td><form action="loeschenrow-type.php" method="post">';
-  echo '<input type="hidden" name="type_id" value="'.$row['type_id'].'">';
-  echo '<input type="submit" class="btn btn-danger" value="Löschen" onclick="return confirm(\'Sicher das Sie diesen Eintrag löschen möchten?\')">';
-  echo '</form></td>';
-
-  echo "</tr>";
+        echo "<tr>";
+        echo "<td>" . $row['type_id'] . "</td>";
+        echo "<td>" . $row['type'] . "</td>";
+        echo "<td>" . $row['comment'] . "</td>"; 
+        echo '<td><div class="row"><form action="type-edit-form.php" method="GET" class="px-2">';
+        echo '<input type="hidden" name="type_id" value="' . $row['type_id'] . '">';
+        echo '<input type="hidden" name="type" value="' . $row['type'] . '">';
+        echo '<input type="hidden" name="comment" value="' . $row['comment'] . '">';
+        echo '<input type="submit" class="btn btn-primary" name="edit" value="Bearbeiten">';
+        echo '</form>';
+        echo '<form action="loeschenrow-type.php" method="post">';
+        echo '<input type="hidden" name="type_id" value="' . $row['type_id'] . '">';
+        echo '<input type="submit" class="btn btn-danger" value="Löschen" onclick="return confirm(\'Sicher das Sie diesen Eintrag löschen möchten?\')">';
+        echo '</form></div></td>';
+        echo "</tr>";
 }
 
 ?>

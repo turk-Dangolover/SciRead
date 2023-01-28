@@ -21,19 +21,19 @@ $comment=$_GET['comment'];
 ?>
 <br><br>
 <form tyle="margin-left:20px" action="update-fachbereich.php" method="post">
-<div class="col-md-4 mb-3">
+<div class="col-md-12 mb-lg-4 ">
 <label for="fachbereich">Fachbereich:</label>
   <input type="hidden" name="fachbereich_id" value="<?php echo $id; ?>">  
     <input type="text" class="form-control" name="newFachbereich" id="newFachbereich" value="<?php echo $fachberech; ?>" required>
   </div>
-  <div class="col-md-4 mb-3">
+  <div class="col-md-12 mb-lg-4">
               <label for="comment">Anmerkungen</label>
     <input type="text" class="form-control" name="newComment" id="newComment" value="<?php echo $comment; ?>">
   </div>
-  <div class="col-md-4 mb-3">
+  <div class="col-md-12 mb-lg-4 ">
   <input type="submit" value="Update" name="update"  class="btn btn-light" 
   onclick="alert('Fachbereich wurde aktualisiert!'); location.href = 'addFachbereich.php'; return true;" /><br><br>
-
+</div>
 </form>
 <br><br>
 <?php include_once '../Dreessen/footer.php' ?>

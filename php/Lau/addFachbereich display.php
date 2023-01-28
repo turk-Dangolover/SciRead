@@ -1,18 +1,21 @@
 <form method="post">
-
+  <div class="mb-3 mt-3 row align-items-end">
   <div class="col-auto">
+  <div class="form-group">
     <label for="search-filter" class="col-form-label">Sortieren:</label>
-    <select class="custom-select mr-sm-2" id="sort" name="sort">
+    <select class="form-control" id="sort" name="sort">
       <option value="fachbereich_id">ID</option>
-      <option value="fachbereich">Fachbereich</option>
-
-    </select>
+      <option value="fachbereich">Fachbereich</option>  
+     </select>
+</div>
+</div>
+ 
     <div class="col-auto">
-      <div class="col-auto">
+      <div class="form-group">
         <button type="submit" class="btn btn-light">Abschicken</button>
       </div>
     </div>
-
+</div>
 </form>
 
 <div class="table-responsive">
