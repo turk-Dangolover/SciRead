@@ -123,10 +123,10 @@
                     </div>
                 <?php
                 } else {
-                    header("Location: search.php", true, 302);
+                    echo "<script>window.location.href='user_book_search.php'</script>";
                 }
             } else {
-                header("Location: search.php", true, 302);
+                echo "<script>window.location.href='user_book_search.php'</script>";
             }
         } else {
             $book_userid = executeSQL("SELECT user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch()[0];
@@ -198,10 +198,10 @@
 
         <?php
                 } else {
-                    header("Location: user_book_search.php", true, 302);
+                    echo "<script>window.location.href='user_book_search.php'</script>";
                 }
             } else {
-                header("Location: user_book_search.php", true, 302);
+                echo "<script>window.location.href='user_book_search.php'</script>";
             }
         } else {
             $book_userid = executeSQL("SELECT user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch()[0];

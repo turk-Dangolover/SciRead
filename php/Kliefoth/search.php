@@ -27,7 +27,7 @@
     } else {
         $sort = "ORDER BY Title ASC";
     }
-    $books = executeSQL("SELECT title,publisher_id,pages,type_id,author,published_date,fachbereich_id,literatur_id FROM public.\"literatur\" WHERE title LIKE '$titel%' $sort")->fetchAll();
+    $books = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,lit.literatur_id FROM public.\"literatur\" lit JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' $sort")->fetchAll();
     if (isset($_GET['use'])) {
         $use = $_GET['use'];
     }
@@ -93,12 +93,12 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Titel</th>
-                                    <th scope="col">VerlagID</th>
+                                    <th scope="col">Verlag</th>
                                     <th scope="col">Seitenanzahl</th>
-                                    <th scope="col">TypID</th>
+                                    <th scope="col">Typ</th>
                                     <th scope="col">Autor</th>
                                     <th scope="col">Veröffentlichungsdatum</th>
-                                    <th scope="col">FachbereichID</th>
+                                    <th scope="col">Fachbereich</th>
                                     <?php if (isset($user_id)) { ?>
                                         <th></th>
                                     <?php } ?>
