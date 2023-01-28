@@ -1,5 +1,5 @@
 <?php 
-$conn = parse_ini_file("../Lau/database.ini");
+$conn = parse_ini_file("../../database.ini");
 $host = $conn['host'];
 $port = $conn['port'];
 $db = $conn['database'];

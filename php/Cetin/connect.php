@@ -4,7 +4,7 @@
 ?>
 
 <?php
-$config = parse_ini_file("../Cetin/database.ini");
+$config = parse_ini_file("../../database.ini");
 $host = $config['host'];
 $port = $config['port'];
 $db = $config['database'];

@@ -13,8 +13,7 @@
     <div class="card">
       <div class="card-header">
         <h3>Administrationsbereich</h3>
-        <div class="container">
-  <div class="card">
+      </div>
     <div class="card-body text-center container-fluid">
       <div class="list-group">
         <h4 class="list-group-item list-group-item-action active">Datenbankeinträge</h4>
