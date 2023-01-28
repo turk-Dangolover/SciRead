@@ -23,7 +23,7 @@
     <li class="breadcrumb-item"><a href="addVerlag.php">Verlag</a></li>
   </ol>
 </nav>
-<form action="savefachbereich.php" method="post">
+<forms tyle="margin-left:20px" action="savefachbereich.php" method="post">
 <div class="row">
       <div class="col-md-4 mb-3">
       <label for="author">Fachbereich:</label>
