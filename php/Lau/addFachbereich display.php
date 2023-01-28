@@ -46,7 +46,7 @@
         echo '<input type="hidden" name="fachbereich_id" value="' . $row['fachbereich_id'] . '">';
         echo '<input type="hidden" name="fachbereich" value="' . $row['fachbereich'] . '">';
         echo '<input type="hidden" name="comment" value="' . $row['comment'] . '">';
-        echo '<input type="submit" class="btn btn-danger" name="edit" value="Edit">';
+        echo '<input type="submit" class="btn btn-primary" name="edit" value="Bearbeiten">';
         echo '</form>';
         echo '<form action="loeschenrow-fachbereich.php" method="post">';
         echo '<input type="hidden" name="fachbereich_id" value="' . $row['fachbereich_id'] . '">';

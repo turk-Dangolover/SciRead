@@ -27,18 +27,18 @@
         <form tyle="margin-left:20px" action="savefachbereich.php" method="post">
           <div class="row align-items-end">
             <div class="col-md-4 mb-3">
-              <label for="author">Fachbereich:</label>
+              <label for="fachbereich">Fachbereich:</label>
               <input type="text" class="form-control" name="fachbereich" required>
             </div>
             <div class="col-md-4 mb-3">
-              <label for="Kommentar">Anmerkungen</label>
+              <label for="comment">Anmerkungen</label>
               <input type="text" class="form-control" name="comment" id="comment">
-            </div>
-            <div class="col-md-4 mb-3">
-              <input type="submit" value="Upload" name="submit" class="btn btn-light" onclick="alert('Neuer Fachbereich hinzugefügt!'); location.href = 'addFachbereich.php'; return true;" /><br><br>
-            </div>
-          </div>
+</div>
 
+            <div class="col-auto">
+              <button type="submit" name="submit" class="btn btn-light" onclick="alert('Neuer Fachbereich hinzugefügt!'); location.href = 'addFachbereich.php'; return true;">Upload</button><br><br>
+</div>
+</div>
         </form>
 
 
