@@ -33,6 +33,12 @@ foreach ($typen as $row) {
   echo "<td>".$row['fachbereich_id']."</td>";
   echo "<td>".$row['fachbereich']."</td>";
   echo "<td>".$row['comment']."</td>";
+  echo '<td><form action="fachbereich-edit-form.php" method="GET">';
+  echo '<input type="hidden" name="fachbereich_id" value="'.$row['fachbereich_id'].'">';
+  echo '<input type="hidden" name="fachbereich" value="'.$row['fachbereich'].'">';
+  echo '<input type="hidden" name="comment" value="'.$row['comment'].'">';
+  echo '<input type="submit" name="edit" value="edit">';
+  echo '</form></td>';
   echo '<td><form action="loeschenrow-fachbereich.php" method="post">';
   echo '<input type="hidden" name="fachbereich_id" value="'.$row['fachbereich_id'].'">';
   echo '<input type="submit" class="btn btn-danger" value="Löschen" onclick="return confirm(\'Sicher das Sie diesen Eintrag löschen möchten?\')">';
