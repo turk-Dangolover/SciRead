@@ -1,18 +1,18 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 10.01.2023
-Beschreibung: Verarbeitet die Daten aus dem Formular und ändert das Passwort des Benutzers
+Beschreibung: HTML-Seite für Fehler 401
 -->
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error 401: Unauthorized </title>
-</head>
 <body>
-    <h1>Error 401: Unauthorized</h1>
-    <p>Zugang verweigert.</p>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Fehler 401: Unauthorisiert</h1>
+                <p>Zugang verweigert.</p>
+            </div>
+        </div>
+    </div>
+    <?php
+include_once "../Dreessen/footer.php";
+?>
 </body>
 </html>

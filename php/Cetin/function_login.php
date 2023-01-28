@@ -1,6 +1,5 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 01.01.2023
 Beschreibung: Verarbeitet die Daten aus dem Formular, vergleicht sie mit den Daten in der Datenbank und loggt den Benutzer ein
 -->
 
@@ -21,24 +20,24 @@ $password = $_POST['kennwort'];
 
 // Nach Anmeldedaten in der Datenbank suchen
 $query = 'SELECT * FROM users WHERE (email = :email)';
-$daten = [':email' => $email];
 // Fehler abfangen falls ein Fehler auftritt
 try
 {
 // Query ausführen
-$res = $dbh->prepare($query);
-$res->execute($daten);
+$stmt = $dbh->prepare($query);
+$stmt->bindValue(':email', $email);
+$stmt->execute();
 }
 // Fehler abfangen
 catch (PDOException $e)
 {
 // Fehlermeldung ausgeben 
-echo 'Query error.';
+echo "Verbindung fehlgeschlagen: " . $e->getMessage();
 // Script beenden
 die();
 }
 // fetch(PDO::FETCH_ASSOC) liefert ein Array mit Spaltennamen als Schlüssel zurück.
-$row = $res->fetch(PDO::FETCH_ASSOC);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 // Prüft ob ein Array zurückgegeben wurde
 $isArray = is_array($row);
 if (!$isArray)
@@ -76,5 +75,5 @@ $_SESSION['user_id'] = $row['user_id'];
 $_SESSION['roles_id'] = $row['roles_id'];
 $_SESSION['login'] = TRUE;
 // Weiterleiten auf die Startseite.
-header('Location: page_profile.php');
+header('Location: ../Dreessen/Homepage.php');
 ?>

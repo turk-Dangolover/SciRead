@@ -1,6 +1,5 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 01.01.2023
 Beschreibung: Verarbeitet die Daten aus dem Formular, um einen neuen Benutzer anzulegen
 -->
 
@@ -17,7 +16,8 @@ $password2 = $_POST['kennwort2'];
 // Überprüfen ob der User schon existiert
 $query = 'SELECT * FROM users WHERE (email = :email)';
 $isUserDubplicate = $dbh->prepare($query);
-$isUserDubplicate->execute(['email' => $email]);
+$isUserDubplicate->bindValue(':email', $email);
+$isUserDubplicate->execute();
 $countUser = $isUserDubplicate->rowCount();
 
 if ($countUser > 0) {
@@ -50,10 +50,14 @@ $isPasswordCorrect = $password == $password2;
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
 // Daten in die Datenbank schreiben
-$sql = "INSERT INTO users (email, passwort, roles_id) VALUES ('$email', '$passwordHash', 2)";
-// Falls die Daten erfolgreich in die Datenbank geschrieben wurden, ist exec() größer als 0 und es wird eine Erfolgsmeldung ausgegeben
-$isDBConnectionSuccessful = $dbh->exec($sql) >0;
-    if (!$isDBConnectionSuccessful) {
+$sql = "INSERT INTO users (email, passwort, roles_id) VALUES (:email, :passwordHash, :roles_id)";
+$stmt = $dbh->prepare($sql);
+$stmt->bindValue(':email', $email);
+$stmt->bindValue(':passwordHash', $passwordHash);
+$stmt->bindValue(':roles_id', 2);
+$success = $stmt->execute();
+// Falls die Daten erfolgreich in die Datenbank geschrieben wurden, ist $succed true
+    if (!$success) {
         // Falls die Daten nicht in die Datenbank geschrieben wurden, wird eine Fehlermeldung ausgegeben
         echo "Error: " . $sql . "<br>" . $dbh->errorInfo();
         return;
@@ -64,7 +68,4 @@ $isDBConnectionSuccessful = $dbh->exec($sql) >0;
 alert("Erfolgreich registriert!");
 window.location.href = "page_login.php";
 </script>   
-<?php
-// Verbindung schließen
-$dbh->connection = null;
-?>
+

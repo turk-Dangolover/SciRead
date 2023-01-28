@@ -1,6 +1,5 @@
 <?php
 //Erstellt von Cem Cetin
-//Datum: 02.01.2023
 //Beschreibung: Verbindung zur Datenbank
 ?>
 
@@ -11,20 +10,26 @@ $port = $config['port'];
 $db = $config['database'];
 $user = $config['user'];
 $pw = $config['password'];
+//Verbindung zur Datenbank wird hergestellt
 $cStr = "pgsql:host=$host; port=$port;dbname=$db;";
+//Try Catch-Block, um Fehler abzufangen
 try {
+    //Objekt wird erstellt
     $dbh = new PDO($cStr, $user, $pw);
-
-    $countAdmin = $dbh->prepare("SELECT email FROM users WHERE email = 'admin@admin.de'");
-    $countAdmin->execute();
-    $count = $countAdmin->fetchColumn();
+    //Admin wird erstellt, wenn noch nicht vorhanden
+    $sqlSelect = "SELECT email FROM users WHERE email = :email";
+    $stmtSelect = $dbh->prepare($sqlSelect);
+    $stmtSelect->bindValue(':email', 'admin@admin.de');
+    $stmtSelect->execute();
+    $count = $stmtSelect->rowCount();
     if($count < 1){
-        $pw = password_hash('admin', PASSWORD_DEFAULT);
+        $pwAdmin = password_hash('admin', PASSWORD_DEFAULT);
+        //Es werden Parameter verwendet, um SQL-Injection zu verhindern
         $sql = "INSERT INTO users (email, passwort, roles_id) VALUES (:email, :passwort, :roles_id)";
         $stmt = $dbh->prepare($sql);
          $stmt->bindValue(':email', 'admin@admin.de');
-         $stmt->bindValue(':passwort', $pw);
-         $stmt->bindValue(':roles_id', 1);
+         $stmt->bindValue(':passwort', $pwAdmin);
+         $stmt->bindValue(':roles_id', 3);
         $stmt->execute();
     }
     

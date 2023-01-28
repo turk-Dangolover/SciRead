@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suche</title>
+    <title>SciRead | Suche</title>
 </head>
 
 <body>
@@ -15,7 +15,8 @@
     include_once "../Dreessen/navbar.php";
     require_once "../Dreessen/Server_connect.php";
     if (!isset($_SESSION['user_id'])) {
-        echo "<script>window.location.href='../Cetin/page_login.php'</script>";
+        include_once('../Cetin/401.php');
+        return;
     }
     $user_id = $_SESSION['user_id'];
     if (isset($_GET['use'])) {
@@ -61,133 +62,152 @@
     if (isset($_POST['search-filter'])) {
         $sort = "ORDER BY " . $_POST['search-filter'];
     } else {
-        $sort = "ORDER BY Titel ASC";
+        $sort = "ORDER BY Title ASC";
+    }
+    if (isset($user_id) && isset($_SESSION['roles_id'])) {
+        if ($_SESSION['roles_id'] === 1) {
+            $books = executeSQL("SELECT book.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' $sort")->fetchAll();
+        } else {
+            $books = executeSQL("SELECT book.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' AND book.user_id = '$user_id' $sort")->fetchAll();
+        }
     }
 
-    $books = executeSQL("SELECT id,Titel,VerlagID,Seitenzahl,TypID,Author,Veröffentlichungsdatum,FachbereichID FROM public.\"wissenschaftliche_literatur\" WHERE Titel LIKE '$titel%' AND userID = '$user_id' $sort")->fetchAll();
 
     if ($use === "delete" && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("Select Titel,VerlagID,Seitenzahl,TypID,Author,Veröffentlichungsdatum,FachbereichID,userID FROM public.\"wissenschaftliche_literatur\" WHERE id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,book.user_id FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
     ?>
                     <div class="container">
-                        <div class="row align-items-center ms-5 me-5 mt-5 border-top">
-                            <p class="col pt-3 pb-3 mb-0 text-center">Wollen Sie wirklich das Buch löschen?</p>
-                        </div>
-                        <div class="row ms-5 me-5">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Titel</th>
-                                        <th scope="col">VerlagID</th>
-                                        <th scope="col">Seitenanzahl</th>
-                                        <th scope="col">TypID</th>
-                                        <th scope="col">Autor</th>
-                                        <th scope="col">Veröffentlichungsdatum</th>
-                                        <th scope="col">FachbereichID</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    echo "<tr>";
-                                    echo "<td>" . $book[0] . "</td>";
-                                    echo "<td>" . $book[1] . "</td>";
-                                    echo "<td>" . $book[2] . "</td>";
-                                    echo "<td>" . $book[3] . "</td>";
-                                    echo "<td>" . $book[4] . "</td>";
-                                    echo "<td>" . $book[5] . "</td>";
-                                    echo "<td>" . $book[6] . "</td>";
-                                    echo "</tr>";
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row ms-5 me-5 justify-content-evenly">
-                            <a href="user_book_search.php" class="col-4 btn btn-primary">←Zurück </a>
-                            <a class="col-4 btn btn-danger" href="user_book_search.php?use=delete&id=<?php echo $id ?>&agreed=1">Löschen?</a>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Suche</h3>
+                            </div>
+                            <div class="row align-items-center ms-5 me-5 mt-5 border-top">
+                                <p class="col pt-3 pb-3 mb-0 text-center">Wollen Sie wirklich das Buch löschen?</p>
+                            </div>
+                            <div class="row ms-5 me-5">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Titel</th>
+                                            <th scope="col">VerlagID</th>
+                                            <th scope="col">Seitenanzahl</th>
+                                            <th scope="col">TypID</th>
+                                            <th scope="col">Autor</th>
+                                            <th scope="col">Veröffentlichungsdatum</th>
+                                            <th scope="col">FachbereichID</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        echo "<tr>";
+                                        echo "<td>" . $book[0] . "</td>";
+                                        echo "<td>" . $book[1] . "</td>";
+                                        echo "<td>" . $book[2] . "</td>";
+                                        echo "<td>" . $book[3] . "</td>";
+                                        echo "<td>" . $book[4] . "</td>";
+                                        echo "<td>" . $book[5] . "</td>";
+                                        echo "<td>" . $book[6] . "</td>";
+                                        echo "</tr>";
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row ms-5 me-5 justify-content-evenly">
+                                <a href="user_book_search.php" class="col-4 btn btn-primary">←Zurück </a>
+                                <a class="col-4 btn btn-danger" href="user_book_search.php?use=delete&id=<?php echo $id ?>&agreed=1">Löschen?</a>
+                            </div>
                         </div>
                     </div>
                 <?php
                 } else {
-                    header("Location: search.php", true, 302);
+                    echo "<script>window.location.href='user_book_search.php'</script>";
                 }
             } else {
-                header("Location: search.php", true, 302);
+                echo "<script>window.location.href='user_book_search.php'</script>";
             }
         } else {
-            $book_userid = executeSQL("Select userID FROM public.\"wissenschaftliche_literatur\" WHERE id='$id'")->fetch()[0];
+            $book_userid = executeSQL("SELECT user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch()[0];
             if (isset($user_id)) {
                 if ($user_id === $book_userid) {
-                    executeSQL('DELETE FROM public."wissenschaftliche_literatur" WHERE id=' . $id)->fetch();
+                    executeSQL('DELETE FROM public."literatur" WHERE literatur_id=' . $id)->fetch();
                 }
             }
             echo "<script>window.location.href='user_book_search.php'</script>";
         }
     } elseif ($use === "update"  && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("Select Titel,VerlagID,Seitenzahl,TypID,Author,Veröffentlichungsdatum,FachbereichID,userID FROM public.\"wissenschaftliche_literatur\" WHERE id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,book.user_id FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
                 ?>
                     <div class="container">
-                        <form action="user_book_search.php?use=update&id=<?php echo $id ?>&agreed=1" method="post" class="ms-5 me-5 mt-4 border-top">
-                            <div class="pt-3 mb-3 row">
-                                <div class="col">
-                                    <label for="titel" class="col-form-label">Titel:</label>
-                                    <input type="text" class="form-control" name="title" id="title" placeholder="Titel" value="<?php echo $book[0] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="verlagid" class="col-form-label">VerlagID:</label>
-                                    <input type="text" class="form-control" name="verlagid" id="verlagid" placeholder="VerlagID" value="<?php echo $book[1] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="seitenzahl" class="col-form-label">Seitenzahl:</label>
-                                    <input type="text" class="form-control" name="seitenzahl" id="seitenzahl" placeholder="Seitenzahl" value="<?php echo $book[2] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="typid" class="col-form-label">TypID:</label>
-                                    <input type="text" class="form-control" name="typid" id="typid" placeholder="TypID" value="<?php echo $book[3] ?>" autocomplete="off">
-                                </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Suche</h3>
                             </div>
+                            <div class="card-body text-center container-fluid">
+                                <form action="user_book_search.php?use=update&id=<?php echo $id ?>&agreed=1" method="post" class="ms-5 me-5 mt-4 border-top">
+                                    <div class="pt-3 mb-3 row">
+                                        <div class="col">
+                                            <label for="titel" class="col-form-label">Titel:</label>
+                                            <input type="text" class="form-control" name="title" id="title" placeholder="Titel" value="<?php echo $book[0] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="verlagid" class="col-form-label">Verlag:</label>
+                                            <input type="text" class="form-control" name="verlagid" id="verlagid" placeholder="Verlag" value="<?php echo $book[1] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="seitenzahl" class="col-form-label">Seitenzahl:</label>
+                                            <input type="text" class="form-control" name="seitenzahl" id="seitenzahl" placeholder="Seitenzahl" value="<?php echo $book[2] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="typid" class="col-form-label">Typ:</label>
+                                            <input type="text" class="form-control" name="typid" id="typid" placeholder="TypID" value="<?php echo $book[3] ?>" autocomplete="off">
+                                        </div>
+                                    </div>
 
-                            <div class="mb-3 row">
-                                <div class="col">
-                                    <label for="author" class="col-form-label">Autor:</label>
-                                    <input type="text" class="form-control" name="author" id="author" placeholder="Autor" value="<?php echo $book[4] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="veröffentlichungsdatum" class="col-form-label">Veröffentlichungsdatum:</label>
-                                    <input type="text" class="form-control" name="veröffentlichungsdatum" id="veröffentlichungsdatum" placeholder="Veröffentlichungsdatum" value="<?php echo $book[5] ?>" autocomplete="off">
-                                </div>
-                                <div class="col">
-                                    <label for="fachbereichid" class="col-form-label">FachbereichID:</label>
-                                    <input type="text" class="form-control" name="fachbereichid" id="fachbereichid" placeholder="FachbereichID" value="<?php echo $book[6] ?>" autocomplete="off">
-                                </div>
-                            </div>
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="author" class="col-form-label">Autor:</label>
+                                            <input type="text" class="form-control" name="author" id="author" placeholder="Autor" value="<?php echo $book[4] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="veröffentlichungsdatum" class="col-form-label">Veröffentlichungsdatum:</label>
+                                            <input type="text" class="form-control" name="veröffentlichungsdatum" id="veröffentlichungsdatum" placeholder="Veröffentlichungsdatum" value="<?php echo $book[5] ?>" autocomplete="off">
+                                        </div>
+                                        <div class="col">
+                                            <label for="fachbereichid" class="col-form-label">Fachbereich:</label>
+                                            <input type="text" class="form-control" name="fachbereichid" id="fachbereichid" placeholder="FachbereichID" value="<?php echo $book[6] ?>" autocomplete="off">
+                                        </div>
+                                    </div>
 
-                            <div class="mb-3 mt-3 row justify-content-center">
-                                <div class="col-auto">
-                                    <a href="user_book_search.php" class="btn btn-primary">←Zurück </a>
-                                    <button type="submit" class="btn btn-danger">Änderung Abschicken</button>
-                                </div>
+                                    <div class="mb-3 mt-3 row justify-content-center">
+                                        <div class="col-auto">
+                                            <a href="user_book_search.php" class="btn btn-primary">←Zurück </a>
+                                            <button type="submit" class="btn btn-danger">Änderung Abschicken</button>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
-                        </form>
+                        </div>
                     </div>
 
         <?php
                 } else {
-                    header("Location: user_book_search.php", true, 302);
+                    echo "<script>window.location.href='user_book_search.php'</script>";
                 }
             } else {
-                header("Location: user_book_search.php", true, 302);
+                echo "<script>window.location.href='user_book_search.php'</script>";
             }
         } else {
-            $book_userid = executeSQL("Select userID FROM public.\"wissenschaftliche_literatur\" WHERE id='$id'")->fetch()[0];
+            $book_userid = executeSQL("SELECT user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch()[0];
             if (isset($user_id)) {
                 if ($user_id === $book_userid) {
-                    executeSQL("UPDATE public.\"wissenschaftliche_literatur\" SET titel='" . $title . "',verlagID='" . $verlagid . "',seitenzahl='" . $seitenzahl . "',typID='" . $typid . "',author='" . $author . "',veröffentlichungsdatum='" . $veröffentlichungsdatum . "',fachbereichID='" . $fachbereichid . "'  WHERE id=" . $id)->fetch();
+                    executeSQL("UPDATE public.\"literatur\" SET title='" . $title . "',publisher_id='" . $verlagid . "',pages='" . $seitenzahl . "',type_id='" . $typid . "',author='" . $author . "',published_date='" . $veröffentlichungsdatum . "',fachbereich_id='" . $fachbereichid . "'  WHERE literatur_id=" . $id)->fetch();
                 }
             }
             echo "<script>window.location.href='user_book_search.php'</script>";
@@ -196,6 +216,10 @@
         ?>
         <!-- #region Search Settings-->
         <div class="container">
+
+            <div class="card-header">
+                <h3>Suche</h3>
+            </div>
             <form action="user_book_search.php" method="post" class="ms-5 me-5 mt-4 border-top">
                 <div class="mb-3  row align-items-end">
                     <div class="col-auto">
@@ -204,15 +228,15 @@
                     </div>
                     <div class="col-auto">
                         <label for="search-filter" class="col-form-label">Sortieren:</label>
-                        <select class="form-select" name="search-filter" id="search-filter">
-                            <option value="Titel ASC" <?php if ($sort === "ORDER BY Titel ASC") echo "selected" ?>>Titel ↓</option>
-                            <option value="Titel DESC" <?php if ($sort === "ORDER BY Titel DESC") echo "selected" ?>>Titel ↑</option>
-                            <option value="Author ASC" <?php if ($sort === "ORDER BY Author ASC") echo "selected" ?>>Autor ↓</option>
-                            <option value="Author DESC" <?php if ($sort === "ORDER BY Author DESC") echo "selected" ?>>Autor ↑</option>
-                            <option value="Seitenzahl ASC" <?php if ($sort === "ORDER BY Seitenzahl ASC") echo "selected" ?>>Seitenanzahl ↓</option>
-                            <option value="Seitenzahl DESC" <?php if ($sort === "ORDER BY Seitenzahl DESC") echo "selected" ?>>Seitenanzahl ↑</option>
-                            <option value="Veröffentlichungsdatum ASC" <?php if ($sort === "ORDER BY Veröffentlichungsdatum ASC") echo "selected" ?>>Veröffentlichungsdatum ↓</option>
-                            <option value="Veröffentlichungsdatum DESC" <?php if ($sort === "ORDER BY Veröffentlichungsdatum DESC") echo "selected" ?>>Veröffentlichungsdatum ↑</option>
+                        <select class="form-control" name="search-filter" id="search-filter">
+                            <option value="title ASC" <?php if ($sort === "ORDER BY title ASC") echo "selected" ?>>Titel ↓</option>
+                            <option value="title DESC" <?php if ($sort === "ORDER BY title DESC") echo "selected" ?>>Titel ↑</option>
+                            <option value="author ASC" <?php if ($sort === "ORDER BY author ASC") echo "selected" ?>>Autor ↓</option>
+                            <option value="author DESC" <?php if ($sort === "ORDER BY author DESC") echo "selected" ?>>Autor ↑</option>
+                            <option value="pages ASC" <?php if ($sort === "ORDER BY pages ASC") echo "selected" ?>>Seitenanzahl ↓</option>
+                            <option value="pages DESC" <?php if ($sort === "ORDER BY pages DESC") echo "selected" ?>>Seitenanzahl ↑</option>
+                            <option value="published_date ASC" <?php if ($sort === "ORDER BY published_date ASC") echo "selected" ?>>Veröffentlichungsdatum ↓</option>
+                            <option value="published_date DESC" <?php if ($sort === "ORDER BY published_date DESC") echo "selected" ?>>Veröffentlichungsdatum ↑</option>
                         </select>
                     </div>
                     <div class="col-auto">
@@ -266,6 +290,7 @@
         <!-- #endregion -->
     <?php } ?>
         </div>
+        <?php include "../Dreessen/footer.php" ?>
 
 </body>
 

@@ -1,4 +1,5 @@
-<?php include_once 'navbar.php'
+<?php include_once 'navbar.php';
+$user_id = $_SESSION['user_id']
  ?>
 <html>
     <body>
@@ -32,9 +33,9 @@
         //alles zusammengelegt
         $newId = (executeSQL("SELECT max(literatur_id) FROM literatur")->fetch())[0]+1;
         $insertLine = "INSERT INTO literatur(literatur_id, pages, author, title, published_date, comment, fachbereich_id, type_id, publisher_id, user_id)
-        VALUES ($newId,'$varpages','$varauthor','$vartitel','$varpublished','$vardescription', '$varfachbereichid','$vartypid','$varverlagid','$user_role');";
+        VALUES ($newId,'$varpages','$varauthor','$vartitel','$varpublished','$vardescription', '$varfachbereichid','$vartypid','$varverlagid','$user_id');";
         executeSQL($insertLine);
-        echo "Literature saved!";
+        echo "<div class= container><div class=card-header><h3>Literature gesichert <h3></div></div>";
 		?>
     </body>
 </html>

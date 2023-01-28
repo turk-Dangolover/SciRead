@@ -1,6 +1,5 @@
 <!--
 Erstellt von Cem Cetin
-Datum: 02.01.2023
 Beschreibung: Verarbeitet die Daten aus dem Formular und ändert das Passwort des Benutzers
 -->
 <?php
@@ -16,15 +15,19 @@ $passwort_confirm = $_POST['confirm_password'];
 session_start();
 $user_id = $_SESSION['user_id'];
 
+try{
 // Holt das Passwort des Benutzers aus der Datenbank
 // PDO Statement Objekt wird erstellt
 $stmt = $dbh->prepare("SELECT passwort FROM users WHERE user_id = :user_id");
 // Parameter werden an das PDO Statement Objekt gebunden
-$stmt->bindParam(':user_id', $user_id);
+$stmt->bindValue(':user_id', $user_id);
 // PDO Statement wird ausgeführt
 $stmt->execute();
 // Das Ergebnis wird in eine Variable gespeichert
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);}
+catch(PDOException $e){
+    echo "Error: " . $e->getMessage();
+}
 
 // Kontrolliert ob das aktuelle Passwort mit dem Passwort in der Datenbank übereinstimmt
 $verify = password_verify($passwort_aktuell, $row['passwort']);
@@ -45,15 +48,19 @@ if (!$isPasswordCorrect) {
 $hashed_password = password_hash($passwort_neu, PASSWORD_DEFAULT);
 
 // Updatet das Passwort in der Datenbank
-$sql = "UPDATE users SET passwort = '$hashed_password' WHERE user_id = $user_id";
+try{
+$sql = "UPDATE users SET passwort = '$hashed_password' WHERE user_id = :user_id";
 $stmt = $dbh->prepare($sql);
+$stmt->bindValue(':user_id', $user_id);
 $stmt->execute();
+}
+catch(PDOException $e){
+    echo "Error: " . $e->getMessage();
+}
 // Falls erfolgreich, wird der Benutzer hierher weitergeleitet
 header('Location: page_change_password.php?success=0');
 
-// Schließt die Verbindung zur Datenbank
-$dbh->connection = null;
+} else {
+    header('Location: page_change_password.php?success=3');
 }
-header('Location: page_change_password.php?success=3');
-
 ?>

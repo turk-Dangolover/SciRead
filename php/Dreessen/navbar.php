@@ -18,7 +18,7 @@ if(isset($_SESSION['roles_id'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></scipt>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link  rel="stylesheet" href="../css/style.css">
-
+    
     <!-- Styles von Kevin -->
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
     <!-- Bootstrap core CSS -->
@@ -26,7 +26,7 @@ if(isset($_SESSION['roles_id'])){
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.0/examples/blog/blog.css" rel="stylesheet">
-    <link rel="icon" href="../pic/Icon.webp">
+    <link rel="icon" href="../pic/Icon.webp" sizes="32x32">
 </head>
 <body>
      <!-- Header von Kevin -->
@@ -60,7 +60,7 @@ if(isset($_SESSION['roles_id'])){
         <nav class="nav d-flex justify-content-between">
           <a class="p-2 text-muted" href="../Kliefoth/search.php">Übersicht</a>
           <?php if ($login){
-            echo '<a class="p-2 text-muted" href="../Dreessen/Submit.php">Hinzufügen</a>';
+            echo '<a class="p-2 text-muted" href="../Dreessen/Submit_page.php">Hinzufügen</a>';
             echo '<a class="p-2 text-muted" href="../Cetin/page_profile.php">User</a>';
           }
           else{
@@ -68,7 +68,7 @@ if(isset($_SESSION['roles_id'])){
             echo '<a class="p-2 text-muted" href="../Cetin/page_login.php">User</a>';
           }
           ?>
-          <?php if($user_role != "1"){
+          <?php if($user_role == "2" || $user_role == '0'){
           echo '<a class="p-2 text-muted" href="#" style="display:none;">Adminbereich</a>';
           }
           else{
@@ -86,21 +86,28 @@ if(isset($_SESSION['roles_id'])){
         </nav>
       </div>
 </div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+  <script>
+  if (!window.jQuery) {
+    var script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js';
+    document.body.appendChild(script);
+  }
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.8/holder.min.js"></script>
+    <script>
+    Holder.addTheme('thumb', {
+      bg: '#55595c',
+      fg: '#eceeef',
+      text: 'Thumbnail'
+    });
+    </script>
 </body>
 </html>
 
- <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"><\/script>')</script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.8/holder.min.js"></script>
-    <script>
-      Holder.addTheme('thumb', {
-        bg: '#55595c',
-        fg: '#eceeef',
-        text: 'Thumbnail'
-      });
-    </script>
+ 
