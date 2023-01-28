@@ -1,9 +1,10 @@
 <?php 
-$host="localhost";
-$port=5432;
-$db="literature";
-$user="postgres";
-$pw="asdf673fg";
+$conn = parse_ini_file("../Lau/database.ini");
+$host = $conn['host'];
+$port = $conn['port'];
+$db = $conn['database'];
+$user = $conn['user'];
+$pw = $conn['password'];
 	
     $connStr = "pgsql:host=$host;port=$port;dbname=$db;";
     $dbConnection = new PDO ($connStr, $user, $pw);

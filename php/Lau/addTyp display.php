@@ -14,6 +14,7 @@
   <th>Typ</th>
   <th>Kommentar</th>
   <th></th>
+  <th></th>
 </tr>
 </thead>
 <br>
@@ -32,16 +33,23 @@ foreach ($typen as $row) {
   echo "<tr>";
   echo "<td>".$row['type_id']."</td>";
   echo "<td>".$row['type']."</td>";
-  echo "<td>".$row['comment']."</td>";
+  echo "<td>".$row['comment']."</td>"; 
+  echo '<td><form action="type-edit-form.php" method="GET">';
+  echo '<input type="hidden" name="type_id" value="'.$row['type_id'].'">';
+  echo '<input type="hidden" name="type" value="'.$row['type'].'">';
+  echo '<input type="hidden" name="comment" value="'.$row['comment'].'">';
+  echo '<input type="submit" name="edit" value="edit">';
+  echo '</form></td>';
   echo '<td><form action="loeschenrow-type.php" method="post">';
   echo '<input type="hidden" name="type_id" value="'.$row['type_id'].'">';
   echo '<input type="submit" class="btn btn-danger" value="Löschen" onclick="return confirm(\'Sicher das Sie diesen Eintrag löschen möchten?\')">';
   echo '</form></td>';
+
   echo "</tr>";
 }
 
 ?>
-
+</script>
 </tbody>
 </table>
 </div>
