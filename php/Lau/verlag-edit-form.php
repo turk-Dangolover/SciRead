@@ -1,3 +1,4 @@
+
 <!Doctype html>
 <html lang="de">
 <head>
@@ -11,28 +12,26 @@
     <div class="container">
                         <div class="card">
                             <div class="card-header">
-                                <h3>Fachbereich</h3>
+                                <h3>Verlag</h3>
                          </div>
-
-<?php
-$id=$_GET['type_id'];
-$type=$_GET['type'];
+                         <?php
+$id=$_GET['publisher_id'];
+$verlag=$_GET['name'];
 $comment=$_GET['comment'];
 ?>
-<br><br>
-<form tyle="margin-left:20px" action="update-type.php" method="post">
-<div class="col-md-12 mb-lg-4 ">   
-<label for="type">Typ:</label>
-  <input type="hidden" name="type_id" value="<?php echo $id; ?>">
-    <input type="text" class="form-control" name="newType" id="newType" value="<?php echo $type; ?>" required>
+<form tyle="margin-left:20px" action="update-verlag.php" method="post">
+<div class="col-md-12 mb-lg-4 ">
+<label for="name">Verlag:</label>
+<input type="hidden" name="publisher_id" value="<?php echo $id; ?>">
+<input type="text" class="form-control" name="newName" id="newName" value="<?php echo $verlag; ?>">
   </div>
   <div class="col-md-12 mb-lg-4">
-              <label for="comment">Anmerkungen:</label>
+              <label for="comment">Anmerkungen</label>
     <input type="text" class="form-control" name="newComment" id="newComment" value="<?php echo $comment; ?>">
   </div>
   <div class="col-md-12 mb-lg-4 ">
   <input type="submit" value="Update" name="update"  class="btn btn-light" 
-  onclick="alert('Fachbereich wurde aktualisiert!'); location.href = 'addType.php'; return true;" /><br><br>
+  onclick="alert('Verlag wurde aktualisiert!'); location.href = 'addVerlag.php'; return true;" /><br><br>
 </div>
 </form>
 <br><br>

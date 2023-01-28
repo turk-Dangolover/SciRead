@@ -13,26 +13,26 @@
                             <div class="card-header">
                                 <h3>Fachbereich</h3>
                          </div>
-
+                         
 <?php
-$id=$_GET['type_id'];
-$type=$_GET['type'];
+$id=$_GET['fachbereich_id'];
+$fachberech=$_GET['fachbereich'];
 $comment=$_GET['comment'];
 ?>
 <br><br>
-<form tyle="margin-left:20px" action="update-type.php" method="post">
-<div class="col-md-12 mb-lg-4 ">   
-<label for="type">Typ:</label>
-  <input type="hidden" name="type_id" value="<?php echo $id; ?>">
-    <input type="text" class="form-control" name="newType" id="newType" value="<?php echo $type; ?>" required>
+<form tyle="margin-left:20px" action="update-fachbereich.php" method="post">
+<div class="col-md-12 mb-lg-4 ">
+<label for="fachbereich">Fachbereich:</label>
+  <input type="hidden" name="fachbereich_id" value="<?php echo $id; ?>">  
+    <input type="text" class="form-control" name="newFachbereich" id="newFachbereich" value="<?php echo $fachberech; ?>" required>
   </div>
   <div class="col-md-12 mb-lg-4">
-              <label for="comment">Anmerkungen:</label>
+              <label for="comment">Anmerkungen</label>
     <input type="text" class="form-control" name="newComment" id="newComment" value="<?php echo $comment; ?>">
   </div>
   <div class="col-md-12 mb-lg-4 ">
   <input type="submit" value="Update" name="update"  class="btn btn-light" 
-  onclick="alert('Fachbereich wurde aktualisiert!'); location.href = 'addType.php'; return true;" /><br><br>
+  onclick="alert('Fachbereich wurde aktualisiert!'); location.href = 'addFachbereich.php'; return true;" /><br><br>
 </div>
 </form>
 <br><br>
