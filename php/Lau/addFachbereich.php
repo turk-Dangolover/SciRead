@@ -27,10 +27,9 @@
 <div class="row">
       <div class="col-md-4 mb-3">
       <label for="author">Fachbereich:</label>
-      <input type="text" class="form-control" name="fachbereich"  required>
-       <div class="invalid-feedback">                             
-</div>
-      <div class="col-md-12 mb-4 ">
+      <input type="text" class="form-control" name="fachbereich"  required>                            
+      </div>
+      <div class="col-md-4 mb-3">
       <label for="Kommentar">Anmerkungen</label>
       <input type="text"  class="form-control" name="comment" id="comment">
       </div>
