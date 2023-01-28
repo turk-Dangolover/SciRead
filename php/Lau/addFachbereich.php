@@ -33,12 +33,12 @@
       <label for="Kommentar">Anmerkungen</label>
       <input type="text"  class="form-control" name="comment" id="comment">
       </div>
-
+</div>
 <input type="submit" value="Upload" name="submit"  class="btn btn-light" 
   onclick="alert('Neuer Fachbereich hinzugefügt!'); location.href = 'addFachbereich.php'; return true;" /><br><br>
 
 </form>
-</div>
+
 
 
 <br><br>
@@ -48,5 +48,7 @@ include('addFachbereich display.php');
     
 
 </body>
-
+<form>
+  <?php include_once '../Dreessen/footer.php' ?>
+</form>
 </html>
