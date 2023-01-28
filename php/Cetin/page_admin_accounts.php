@@ -28,7 +28,7 @@ if(!(isset($_SESSION['roles_id']))){
 // Holt die Rolle des Users aus der Session
 $role = $_SESSION['roles_id'];
 // Falls der User ein Admin ist, wird ihn der Inhalt der Seite angezeigt
-if($role == '1'){
+if(($role == '1' || $role == '3')){
     // Holt alle Accounts aus der Datenbank
    $query = 'SELECT * FROM users';
    // Führt die Abfrage aus
@@ -64,10 +64,17 @@ if($role == '1'){
                         } else if ($row['roles_id'] == 2){
                         echo '<td>User</td>';
                         } else {
-                        echo '<td>Kein Rolle vergeben</td>';
+                        echo '<td>Owner</td>';
                         }
-                        echo '<td><button class="btn btn-danger" onclick="deleteAccount(' . $row['user_id'] . ')">Löschen</button></td>';
-                        echo '</tr>';                                                        
+                        if($role == 3){
+                        echo '<td><button class="btn btn-warning" onclick="switchRole(' . $row['user_id'] . ')">Rolle ändern</button>';
+                        echo '<button class="btn btn-danger" onclick="deleteAccount(' . $row['user_id'] . ')">Löschen</button></td>';
+                        echo '</tr>';
+                        }      
+                        if($role == 1){
+                            echo '<td><button class="btn btn-danger" onclick="deleteAccount(' . $row['user_id'] . ')">Löschen</button></td>';
+                            echo '</tr>';
+                            }                                 
                         }
                 ?>
                 </tbody>
@@ -94,6 +101,17 @@ function deleteAccount(id) {
     if (confirm)
     {
         window.location.href = "function_delete_account.php?id=" + id;
+    } else {
+        window.location.href = "page_admin_accounts.php";
+    }
+}
+
+function switchRole(id) {
+    var id = id;
+    var confirm = window.confirm('Möchten Sie die Rolle dieses Account wirklich ändern?');
+    if (confirm)
+    {
+        window.location.href = "function_switch_role.php?id=" + id;
     } else {
         window.location.href = "page_admin_accounts.php";
     }

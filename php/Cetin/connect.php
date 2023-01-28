@@ -29,7 +29,7 @@ try {
         $stmt = $dbh->prepare($sql);
          $stmt->bindValue(':email', 'admin@admin.de');
          $stmt->bindValue(':passwort', $pwAdmin);
-         $stmt->bindValue(':roles_id', 1);
+         $stmt->bindValue(':roles_id', 3);
         $stmt->execute();
     }
     

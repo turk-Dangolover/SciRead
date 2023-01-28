@@ -2,7 +2,7 @@ CREATE TABLE roles (
 role_id SERIAL PRIMARY KEY,
 role_name VARCHAR(255)
 );
-INSERT INTO roles (role_name) VALUES ('admin'), ('user');
+INSERT INTO roles (role_name) VALUES ('admin'), ('user'),('owner');
 
 CREATE TABLE users (
 user_id SERIAL PRIMARY KEY,

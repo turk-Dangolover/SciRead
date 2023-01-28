@@ -27,7 +27,7 @@ if(!(isset($_SESSION['roles_id']))){
 // Holt die Rolle des Users aus der Session
 $role = $_SESSION['roles_id'];
 // Falls der User kein Admin ist, wird Ihn eine Fehlermeldung angezeigt
-if(!($role == '1')){
+if(!($role == '1' || $role == '3')){
     include_once "401.php";
     return;
     }
