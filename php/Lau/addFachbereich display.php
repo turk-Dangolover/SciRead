@@ -1,10 +1,17 @@
 <form method="post">
-  <label for="sort">Sortieren nach:</label>
-   <select id="sort" name="sort">
-      <option value="fachbereich">Fachbereich</option>
+
+<div class="col-auto">
+      <label for="search-filter" class="col-form-label">Sortieren:</label>
+   <select  class="custom-select mr-sm-2" id="sort" name="sort">
       <option value="fachbereich_id">ID</option>
+      <option value="fachbereich">Fachbereich</option>
+      
    </select>
-  <input type="submit" value="Sortieren">
+  <div class="col-auto"> <div class="col-auto">
+  <button type="submit" class="btn btn-light">Abschicken</button>
+  </div>
+</div>
+                
 </form>
 
 <div class="table-responsive"><table class="table">
