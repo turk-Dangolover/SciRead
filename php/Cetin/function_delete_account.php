@@ -12,12 +12,28 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: page_delete_own_account.php');
 }
 $role = $_SESSION['roles_id'];
+
 // Die Funktion wird vom Admin ausgeführt, wenn er einen Account löschen möchte
 if (($role == '1' || $role == '3')) {
     if (isset($_GET['id'])) {
         // Holt die ID des Benutzers aus der URL
         $id = $_GET['id'];
 
+        $checkOwner = 'SELECT roles_id FROM users WHERE user_id = :user_id';
+        try {
+            $stmt = $dbh->prepare($checkOwner);
+            $stmt->bindValue(':user_id', $id);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $UserRoleOwner = $row['roles_id'];
+            } catch (PDOException $e) {
+           echo "Verbindung fehlgeschlagen: " . $e->getMessage();
+            die();
+        }
+        if($UserRoleOwner == 3){
+                header('Location: page_admin_accounts.php');
+                return;
+            }
         $changesql = 'UPDATE literatur SET user_id = :filler WHERE user_id = :userE_id';
         try {
             $stmt = $dbh->prepare($changesql);
