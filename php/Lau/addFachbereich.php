@@ -9,16 +9,16 @@
 
 <body>
   <?php include_once "../Dreessen/navbar.php";
-   if (!isset($_SESSION['user_id'])) {
+  if (!isset($_SESSION['user_id'])) {
     include_once('../Cetin/401.php');
     return;
   }
   $user_id = $_SESSION['user_id'];
   $role = $_SESSION['roles_id'];
-  if(!($role == '1' || $role == '3')){
+  if (!($role == '1' || $role == '3')) {
     include_once "401.php";
     return;
-    } ?>
+  } ?>
   <div class="container">
     <div class="card">
       <div class="card-header">
@@ -43,12 +43,12 @@
             <div class="col-md-4 mb-3">
               <label for="comment">Anmerkungen</label>
               <input type="text" class="form-control" name="comment" id="comment">
-</div>
+            </div>
 
             <div class="col-auto">
               <button type="submit" name="submit" class="btn btn-light" onclick="alert('Neuer Fachbereich hinzugefügt!'); location.href = 'addFachbereich.php'; return true;">Upload</button><br><br>
-</div>
-</div>
+            </div>
+          </div>
         </form>
         <?php
         include('addFachbereich display.php');
@@ -58,6 +58,7 @@
   </div>
 
 
-<!-- <?php include_once '../Dreessen/footer.php' ?> -->
+  <?php include_once '../Dreessen/footer.php' ?>
 </body>
+
 </html>

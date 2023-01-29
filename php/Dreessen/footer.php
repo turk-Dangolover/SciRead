@@ -1,4 +1,4 @@
-<footer class="blog-footer position-relative bottom w-100">
+<footer class="blog-footer sticky-bottom w-100">
     <p>This Website was Build by</p>
 
     <a href="#" class="d-inline-block">Cem</a>,
