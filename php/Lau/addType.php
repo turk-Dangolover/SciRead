@@ -8,7 +8,17 @@
 </head>
 
 <body>
-  <?php include_once "../Dreessen/navbar.php"; ?>
+  <?php include_once "../Dreessen/navbar.php"; 
+   if (!isset($_SESSION['user_id'])) {
+    include_once('../Cetin/401.php');
+    return;
+  }
+  $user_id = $_SESSION['user_id'];
+  $role = $_SESSION['roles_id'];
+  if(!($role == '1' || $role == '3')){
+    include_once "401.php";
+    return;
+    }?>
   <div class="container">
     <div class="card">
       <div class="card-header">
@@ -46,6 +56,6 @@ include('addTyp display.php');
     </div>
   </div>
 
-  <?php include_once '../Dreessen/footer.php' ?>
+<?php include_once '../Dreessen/footer.php' ?>
 </body>
 </html>

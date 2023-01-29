@@ -4,8 +4,8 @@
   <div class="form-group">
     <label for="search-filter" class="col-form-label">Sortieren:</label>
     <select class="form-control" id="sort" name="sort">
-      <option value="fachbereich_id">ID</option>
-      <option value="fachbereich">Verlag</option>  
+      <option value="publisher_id">ID</option>
+      <option value="name">Verlag</option>  
      </select>
 </div>
 </div>

@@ -8,7 +8,17 @@
 </head>
 
 <body>
-  <?php include_once "../Dreessen/navbar.php"; ?>
+  <?php include_once "../Dreessen/navbar.php"; 
+  if (!isset($_SESSION['user_id'])) {
+        include_once('../Cetin/401.php');
+        return;
+      }
+      $user_id = $_SESSION['user_id'];
+      $role = $_SESSION['roles_id'];
+      if(!($role == '1' || $role == '3')){
+        include_once "401.php";
+        return;
+        }?>
   <div class="container">
     <div class="card">
       <div class="card-header">
@@ -24,11 +34,11 @@
             <li class="breadcrumb-item active" aria-current="page">Verläge</li>
           </ol>
         </nav>
-        <form tyle="margin-left:20px" action="saveverlag.php" method="post">
+        <form tyle="margin-left:20px" action="saveVerlag.php" method="post">
         <div class="row align-items-end">
             <div class="col-md-4 mb-3">
          <label for="name">Verlag:</label>  
-         <input type="text" class="form-control" name="publisher" required>
+         <input type="text" class="form-control" name="name" required>
             </div>
             <div class="col-md-4 mb-3">
               <label for="comment">Anmerkungen</label>
@@ -48,6 +58,6 @@ include('addVerlag display.php');
   </div>
 
 
-<?php include_once '../Dreessen/footer.php' ?>
+<!-- <?php include_once '../Dreessen/footer.php' ?> -->
 </body>
 </html>
