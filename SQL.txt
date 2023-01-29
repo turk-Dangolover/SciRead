@@ -38,7 +38,6 @@ author varchar(4000) not null,
 title varchar(2000) not null,
 published_date date not null,
 fachbereich_id integer references fachbereich(fachbereich_id),
-creation_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP not null,
 user_id integer references users(user_id),
 comment varchar(4000)
 );
