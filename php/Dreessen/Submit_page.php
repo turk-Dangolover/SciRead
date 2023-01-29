@@ -20,7 +20,7 @@ include '../dreessen/Server_connect.php'
                     </div>
                 </div>
                 <div class="card-body container-fluid border">   
-                    <form action="Submit.php" method="post">
+                    <form action="Submit_database.php" method="post">
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <label for="author">Autor:</label>
