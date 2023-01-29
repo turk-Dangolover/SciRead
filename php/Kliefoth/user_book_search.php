@@ -68,7 +68,7 @@
         if ($_SESSION['roles_id'] === 1) {
             $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' $sort")->fetchAll();
         } else {
-            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' AND book.user_id = '$user_id' $sort")->fetchAll();
+            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' AND lit.user_id = '$user_id' $sort")->fetchAll();
         }
     }
 
