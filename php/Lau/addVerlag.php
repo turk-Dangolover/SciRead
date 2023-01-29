@@ -24,11 +24,11 @@
             <li class="breadcrumb-item active" aria-current="page">Verläge</li>
           </ol>
         </nav>
-        <form tyle="margin-left:20px" action="saveverlag.php" method="post">
+        <form tyle="margin-left:20px" action="saveVerlag.php" method="post">
         <div class="row align-items-end">
             <div class="col-md-4 mb-3">
          <label for="name">Verlag:</label>  
-         <input type="text" class="form-control" name="publisher" required>
+         <input type="text" class="form-control" name="name" required>
             </div>
             <div class="col-md-4 mb-3">
               <label for="comment">Anmerkungen</label>
@@ -48,6 +48,6 @@ include('addVerlag display.php');
   </div>
 
 
-<?php include_once '../Dreessen/footer.php' ?>
+<!-- <?php include_once '../Dreessen/footer.php' ?> -->
 </body>
 </html>
