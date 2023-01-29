@@ -24,6 +24,7 @@ require 'connect.php';
 if(isset($_SESSION['login'])){
 	// Holt die Rolle des Users aus der Session
 	$login = $_SESSION['login'];
+	$roles_id = $_SESSION['roles_id'];
 }
 // Falls der User nicht eingelogt ist, wird Ihn eine Fehlermeldung angezeigt
 if(!$login){
@@ -43,7 +44,14 @@ if(!$login){
 					<input type="password" class="form-control" id="current_password" name="current_password" required>
 				</div>
 				<br>
-				<input type="submit" class="btn btn-primary" value="Bestätigen">
+				<?php
+				if($roles_id == 2){
+					echo '<input type="submit" class="btn btn-primary" value="Bestätigen">';
+				}	
+				else{
+					echo '<input type="submit" class="btn btn-primary" value="Bestätigen" disabled>';
+				}
+				?>
 			</form>
 		</div>
 	</div>

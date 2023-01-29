@@ -16,9 +16,10 @@ include_once 'navbar.php';
             <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Weiterlesen...</a></p>
             </div>
           </div>
-        </main>
+        </div>
+      <?php include_once 'footer.php' ?>
     </body>
     <form>
-      <?php include_once 'footer.php' ?>
+      
     </form>
 </html>

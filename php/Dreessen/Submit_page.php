@@ -114,10 +114,10 @@ include '../dreessen/Server_connect.php'
                     </form>
                 </div>        
         </div>
-    
+        <?php include_once 'footer.php' ?>
     </body>
     <form >
-    <?php include_once 'footer.php' ?>
+    
     </form>
 </html>
 <script>

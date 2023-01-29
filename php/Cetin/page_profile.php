@@ -22,6 +22,7 @@ require 'connect.php';
 // Prüft ob der User eingelogt ist
 if (isset($_SESSION['login'])) {
   $login = $_SESSION['login'];
+  $role = $_SESSION['roles_id'];
 }
 // Falls der User nicht eingelogt ist, wird Ihn eine Fehlermeldung angezeigt
 if (!$login) {
@@ -46,7 +47,14 @@ if (!$login) {
       <div class="list-group">
         <h4 class="list-group-item list-group-item-action active">Account</h4>
         <a href="page_change_password.php" class="list-group-item list-group-item-action ">Passwort ändern</a>
-        <a href="page_delete_own_account.php" class="list-group-item list-group-item-action">Account löschen</a>
+        <?php
+        if($role == 2){
+          echo '<a href="page_delete_own_account.php" class="list-group-item list-group-item-action">Account löschen</a>';
+        }
+        else{
+          echo '<button href="page_delete_own_account.php" class="list-group-item list-group-item-action" disabled >Account löschen</button>';
+        }
+        ?>
       </div>
     </div>
   </div>
