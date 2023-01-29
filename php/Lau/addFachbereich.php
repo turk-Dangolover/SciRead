@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SciRead | Datenbankentitäten</title>
 </head>
 
 <body>
@@ -15,8 +16,13 @@
   }
   $user_id = $_SESSION['user_id'];
   $role = $_SESSION['roles_id'];
+<<<<<<< HEAD
   if (!($role == '1' || $role == '3')) {
     include_once "401.php";
+=======
+  if($role ===1){
+    include_once ('../Cetin/401.php');
+>>>>>>> 347de3bfe94c2a1748b6730add0df5b3634ca335
     return;
   } ?>
   <div class="container">
@@ -58,7 +64,11 @@
   </div>
 
 
+<<<<<<< HEAD
   <?php include_once '../Dreessen/footer.php' ?>
+=======
+<?php include_once '../Dreessen/footer.php' ?>
+>>>>>>> 347de3bfe94c2a1748b6730add0df5b3634ca335
 </body>
 
 </html>
