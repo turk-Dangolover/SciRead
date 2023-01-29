@@ -108,7 +108,7 @@ include '../dreessen/Server_connect.php'
                             <!--bis hier--> 
                         <?php } ?>
                         <!--Not Loged In-->
-                        <?php if($user_role != "1" && $user_role != "2")
+                        <?php if($user_role != "1" && $user_role != "2" && $user_role != "3")
                             include_once '../Cetin/401.php'
                         ?>        
                     </form>
