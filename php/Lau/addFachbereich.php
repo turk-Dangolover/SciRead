@@ -59,7 +59,7 @@
   </div>
 
 
-  <<<<<<< HEAD <?php include_once '../Dreessen/footer.php' ?>=======<?php include_once '../Dreessen/footer.php' ?>>>>>>>> 347de3bfe94c2a1748b6730add0df5b3634ca335
+  <?php include_once '../Dreessen/footer.php' ?>
 </body>
 
 </html>
