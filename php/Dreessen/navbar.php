@@ -20,7 +20,6 @@ if(isset($_SESSION['roles_id'])){
     <link  rel="stylesheet" href="../css/style.css">
     
     <!-- Styles von Kevin -->
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -40,9 +39,6 @@ if(isset($_SESSION['roles_id'])){
                 <a class="blog-header-logo text-dark" href="../Dreessen/Homepage.php">SciRead</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="text-muted" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
-                </a>
                 
                 <?php if($login){
                   echo '<a class="btn btn-sm btn-outline-secondary" href="../Cetin/function_logout.php">Sign Out</a>';
@@ -58,7 +54,6 @@ if(isset($_SESSION['roles_id'])){
         <!--Start der Nav bar-->
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-          <a class="p-2 text-muted" href="../Kliefoth/search.php">Übersicht</a>
           <?php if ($login){
             echo '<a class="p-2 text-muted" href="../Dreessen/Submit_page.php">Hinzufügen</a>';
             echo '<a class="p-2 text-muted" href="../Cetin/page_profile.php">User</a>';
