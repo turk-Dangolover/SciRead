@@ -54,7 +54,7 @@ include '../dreessen/Server_connect.php'
                             </div>      
                             <div class="col-md-3 mb-3">
                                 <label for="Seitenzahl">Seitenanzahl:</label>
-                                <input type="text" class="form-control" name="seitenzahl" placeholder="1234" required>
+                                <input type="number" class="form-control" name="seitenzahl" placeholder="1234" required>
                             </div>
                             <div class="invalid-feedback">
                                     Bitte gib die Seitenanzahl an.
