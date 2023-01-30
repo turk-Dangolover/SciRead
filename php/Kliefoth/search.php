@@ -43,10 +43,10 @@
                 $stmt->bindValue(':lit_id', $id);
                 $stmt->bindValue(':user_id', $user_id);
                 $stmt->execute();
-                echo "<script>window.location.href='search.php'</script>";
+                echo "<script>window.location.href='Homepage.php'</script>";
             } else if ($use === "removebookmark") {
                 executeSQL("DELETE FROM public.\"bookmark\" where literatur_id = $id and user_id=$user_id")->execute();
-                echo "<script>window.location.href='search.php'</script>";
+                echo "<script>window.location.href='Homepage.php'</script>";
             }
         }
     }
@@ -119,9 +119,9 @@
                                     if (isset($user_id)) {
                                         $bookmark = executeSQL("SELECT literatur_id FROM public.\"bookmark\" WHERE literatur_id = $b[7] and user_id = $user_id")->fetch();
                                         if ($bookmark == null) {
-                                            echo "<td><a class='btn border' href='search.php?use=addbookmark&id=$b[7]'>+</a></td>";
+                                            echo "<td><a class='btn border' href='Homepage.php?use=addbookmark&id=$b[7]'>+</a></td>";
                                         } else {
-                                            echo "<td><a class='btn border' href='search.php?use=removebookmark&id=$b[7]'>-</a></td>";
+                                            echo "<td><a class='btn border' href='Homepage.php?use=removebookmark&id=$b[7]'>-</a></td>";
                                         }
                                     }
                                     echo "</tr>";
