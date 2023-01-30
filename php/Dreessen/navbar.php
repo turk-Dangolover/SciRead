@@ -68,7 +68,7 @@ if(isset($_SESSION['roles_id'])){
             echo '<a class="p-2 text-muted" href="../Cetin/page_login.php">User</a>';
           }
           ?>
-          <?php if($user_role == "1" || $user_role == '3'){
+          <?php if($user_role == "0" || $user_role == '2'){
           echo '<a class="p-2 text-muted" href="#" style="display:none;">Adminbereich</a>';
           }
           else{
