@@ -34,32 +34,6 @@
     if (isset($_GET['agreed'])) {
         $agreed = $_GET['agreed'];
     }
-    //Diese Variable wird für die Update Funktion benutzt
-    if (isset($_POST['agreed'])) {
-        $agreed = $_POST['agreed'];
-    }
-    //Diese Variablen werden für die Update Funktion benutzt
-    if (isset($_POST['title'])) {
-        $title = $_POST['title'];
-    }
-    if (isset($_POST['verlagid'])) {
-        $verlagid = $_POST['verlagid'];
-    }
-    if (isset($_POST['seitenzahl'])) {
-        $seitenzahl = $_POST['seitenzahl'];
-    }
-    if (isset($_POST['typid'])) {
-        $typid = $_POST['typid'];
-    }
-    if (isset($_POST['author'])) {
-        $author = $_POST['author'];
-    }
-    if (isset($_POST['veröffentlichungsdatum'])) {
-        $veröffentlichungsdatum = $_POST['veröffentlichungsdatum'];
-    }
-    if (isset($_POST['fachbereichid'])) {
-        $fachbereichid = $_POST['fachbereichid'];
-    }
 
     //Diese Variablen werden von der Suche benutzt
     if (isset($_POST['titel'])) {
