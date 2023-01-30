@@ -47,11 +47,11 @@
         $sort = "ORDER BY Title ASC";
     }
 
-    $books = executeSQL("SELECT book.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' AND book.user_id = '$user_id' $sort")->fetchAll();
+    $books = executeSQL("SELECT book.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"bookmark\" book LEFT JOIN public.\"literatur\" lit  USING (literatur_id) LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE title LIKE '$titel%' AND book.user_id = '$user_id' $sort")->fetchAll();
 
     if ($use === "delete" && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,book.user_id FROM public.\"bookmark\" book JOIN public.\"literatur\" lit  USING (literatur_id) JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,book.user_id FROM public.\"bookmark\" book LEFT JOIN public.\"literatur\" lit  USING (literatur_id) LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
     ?>

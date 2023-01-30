@@ -66,16 +66,16 @@
     }
     if (isset($user_id) && isset($_SESSION['roles_id'])) {
         if ($_SESSION['roles_id'] === 1) {
-            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' $sort")->fetchAll();
+            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE title LIKE '$titel%' $sort")->fetchAll();
         } else {
-            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE title LIKE '$titel%' AND lit.user_id = '$user_id' $sort")->fetchAll();
+            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN  type ty USING (type_id) WHERE title LIKE '$titel%' AND lit.user_id = '$user_id' $sort")->fetchAll();
         }
     }
 
 
     if ($use === "delete" && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,lit.user_id FROM public.\"literatur\" lit  JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,lit.user_id FROM public.\"literatur\" lit  JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
     ?>
@@ -143,7 +143,7 @@
         }
     } elseif ($use === "update"  && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("SELECT title,pub.publisher_id,pages,ty.type_id,author,published_date,fb.fachbereich_id,lit.user_id FROM public.\"literatur\" lit JOIN fachbereich fb USING (fachbereich_id) JOIN publisher pub USING (publisher_id) JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.publisher_id,pages,ty.type_id,author,published_date,fb.fachbereich_id,lit.user_id FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7]) {
                 ?>
