@@ -8,7 +8,18 @@
 </head>
 
     <body>
-    <?php include_once "../Dreessen/navbar.php"; ?>
+    <?php include_once "../Dreessen/navbar.php";
+     if (!isset($_SESSION['user_id'])) {
+      include_once('../Cetin/401.php');
+      return;
+    }
+    $user_id = $_SESSION['user_id'];
+    $role = $_SESSION['roles_id'];
+    if(!isset($role) ||$role==2) {
+      include_once('../Cetin/401.php');
+      return;
+    } 
+     ?>
     <div class="container">
                         <div class="card">
                             <div class="card-header">

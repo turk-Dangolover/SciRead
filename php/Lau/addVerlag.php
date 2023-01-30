@@ -16,7 +16,7 @@
       }
       $user_id = $_SESSION['user_id'];
       $role = $_SESSION['roles_id'];
-      if($role ===1){
+      if(!isset($role) ||$role==2){
         include_once ('../Cetin/401.php');
         return;
         }?>
