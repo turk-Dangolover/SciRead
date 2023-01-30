@@ -30,10 +30,13 @@ if (($role == '1' || $role == '3')) {
            echo "Verbindung fehlgeschlagen: " . $e->getMessage();
             die();
         }
+        
         if($UserRoleOwner == 3){
                 header('Location: page_admin_accounts.php');
                 return;
             }
+      
+        //Spalte user_id in der Tabelle literatur wird auf NULL gesetz
         $changesql = 'UPDATE literatur SET user_id = :filler WHERE user_id = :userE_id';
         try {
             $stmt = $dbh->prepare($changesql);
@@ -44,13 +47,10 @@ if (($role == '1' || $role == '3')) {
            echo "Verbindung fehlgeschlagen: " . $e->getMessage();
             die();
         }
-
-
-      
+        //Bookmark wird gelöscht
         $changesql2 = 'DELETE FROM bookmark WHERE user_id = :userE_id';
         try {
             $stmt = $dbh->prepare($changesql2);
-            $stmt->bindValue(':filler', NULL);
             $stmt->bindValue(':userE_id', $id);
             $stmt->execute();
             } catch (PDOException $e) {
@@ -77,22 +77,22 @@ if ($role == '2') {
         $passwort_aktuell = $_POST['current_password'];
         $user_id = $_SESSION['user_id'];
 
+        //Spalte user_id in der Tabelle literatur wird auf NULL gesetzt
         $changesql = 'UPDATE literatur SET user_id = :filler WHERE user_id = :userE_id';
         try {
             $stmt = $dbh->prepare($changesql);
             $stmt->bindValue(':filler', NULL);
-            $stmt->bindValue(':userE_id', $id);
+            $stmt->bindValue(':userE_id', $user_id);
             $stmt->execute();
             } catch (PDOException $e) {
            echo "Verbindung fehlgeschlagen: " . $e->getMessage();
             die();
         }
-
-        $changesql2 = 'UPDATE bookmark SET user_id = :filler WHERE user_id = :userE_id';
+        //Bookmark wird gelöscht
+        $changesql2 = 'DELETE FROM bookmark WHERE user_id = :userE_id';
         try {
             $stmt = $dbh->prepare($changesql2);
-            $stmt->bindValue(':filler', NULL);
-            $stmt->bindValue(':userE_id', $id);
+            $stmt->bindValue(':userE_id', $user_id);
             $stmt->execute();
             } catch (PDOException $e) {
            echo "Verbindung fehlgeschlagen: " . $e->getMessage();
