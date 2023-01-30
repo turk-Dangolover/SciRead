@@ -65,7 +65,7 @@ include_once 'navbar.php';
           <div class="card">
             <img class="card-img-top" src="../../pic/Adminbereich.PNG" alt="100%x260" style="height: 260px; width: 100%; display: block;">
             <div class="card-body">
-              <?php if($user_role == "2" || $user_role == '0'){
+              <?php if($user_role == "1" || $user_role == '3'){
                 echo
                 '<h5 class="card-title">
                 <a class="text-dark" href="#">Adminbereich</a>
