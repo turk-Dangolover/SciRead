@@ -45,7 +45,9 @@ if (($role == '1' || $role == '3')) {
             die();
         }
 
-        $changesql2 = 'UPDATE bookmark SET user_id = :filler WHERE user_id = :userE_id';
+
+      
+        $changesql2 = 'DELETE FROM bookmark WHERE user_id = :userE_id';
         try {
             $stmt = $dbh->prepare($changesql2);
             $stmt->bindValue(':filler', NULL);
