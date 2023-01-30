@@ -24,7 +24,7 @@ include '../dreessen/Server_connect.php'
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <label for="author">Autor:</label>
-                                <input type="text" class="form-control" name="author" placeholder="author"  required>
+                                <input type="text" class="form-control" name="author" placeholder="Auor"  required>
                                 <div class="invalid-feedback">
                                     Bitte gebe den Autor an.
                                 </div>
@@ -104,7 +104,7 @@ include '../dreessen/Server_connect.php'
                             </div>
                         </div>
                         <p>
-                        <button class="btn btn-primary" type="submit">Submit form</button>
+                        <button class="btn btn-primary" type="submit">Abschicken</button>
                             <!--bis hier--> 
                         <?php } ?>
                         <!--Not Loged In-->
