@@ -31,7 +31,11 @@ $role = $_SESSION['roles_id'];
 if(($role == '1' || $role == '3')){
     // Holt alle Accounts aus der Datenbank
    $query = 'SELECT * FROM users';
-   // Führt die Abfrage aus
+   $search = '';
+   if (isset($_GET['search'])) {
+       $search = $_GET['search'];
+       $query = "SELECT * FROM users WHERE email LIKE '%$search%'";
+   }
    $stmt = $dbh->prepare($query);
    $stmt->execute();
    ?>
@@ -41,7 +45,23 @@ if(($role == '1' || $role == '3')){
         <div class="card-header">
             <h3>Admin Accounts</h3>
         </div>
-        <div class="card-body text-center container-fluid">
+        <div class="card-body container-fluid">
+        <form action="page_admin_accounts.php" method="get" class="ms-5 me-5 border-top">
+            <div class="mb-3 mt-3 row align-items-end">
+                <div class="col-auto">
+                    <div class="form-group">
+                        <label for="search" class="col-form-label">Suche:</label>
+                        <input type="text" class="form-control" name="search" placeholder="Suchen nach Email" value="<?php echo $search; ?>">
+                    </div>
+                </div>
+                <div class="col-auto">
+                     <div class="form-group">
+                     <button type="submit" class="btn btn-primary">Abschicken</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
             <table class="table table-striped ">
                 <thead>
                     <tr>
