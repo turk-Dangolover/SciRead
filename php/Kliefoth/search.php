@@ -57,7 +57,7 @@
                 <h3>Suche</h3>
             </div>
             <div class="card-body container-fluid">
-                <form action="search.php" method="post" class="ms-5 me-5 border-top">
+                <form action="Homepage.php" method="post" class="ms-5 me-5 border-top">
                     <div class="mb-3 mt-3 row align-items-end">
                         <div class="col-auto">
                             <div class="form-group">
