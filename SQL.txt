@@ -48,17 +48,17 @@ literatur_id integer references literatur(literatur_id) not null,
 user_id integer references users(user_id) 
 );
 
-INSERT INTO fachbereich (fachbereich_id, fachbereich, comment) VALUES (1, 'Sonstige', '');
-INSERT INTO fachbereich (fachbereich_id, fachbereich, comment) VALUES (2, 'Physik', '');
-INSERT INTO fachbereich (fachbereich_id, fachbereich, comment) VALUES (3, 'Mathe', '');
-INSERT INTO fachbereich (fachbereich_id, fachbereich, comment) VALUES (4, 'Biologie', '');
+INSERT INTO fachbereich (fachbereich, comment) VALUES ( 'Biologie', '');
+INSERT INTO fachbereich (fachbereich, comment) VALUES ('Physik', '');
+INSERT INTO fachbereich ( fachbereich, comment) VALUES ('Mathe', '');
+INSERT INTO fachbereich ( fachbereich, comment) VALUES ('Sonstige', '');
 
-INSERT INTO type (type_id, type, comment) VALUES (1, 'Sonstige', '');
-INSERT INTO type (type_id, type, comment) VALUES (2, 'Lehrbuch', '');
-INSERT INTO type (type_id, type, comment) VALUES (3, 'Artikel', '');
-INSERT INTO type (type_id, type, comment) VALUES (4, 'Masterarbeit', '');
+INSERT INTO type ( type, comment) VALUES ('Sonstige', '');
+INSERT INTO type ( type, comment) VALUES ('Lerbuch', '');
+INSERT INTO type ( type, comment) VALUES ('Artikel', '');
+INSERT INTO type ( type, comment) VALUES ('Masterarbeit', '');
 
-INSERT INTO publisher (publisher_id, name, comment) VALUES (1, 'Sonstige', '');
-INSERT INTO publisher (publisher_id, name, comment) VALUES (2, 'Springer', '');
-INSERT INTO publisher (publisher_id, name, comment) VALUES (3, 'Wiley', '');
-INSERT INTO publisher (publisher_id, name, comment) VALUES (4, 'Klett', '');
+INSERT INTO publisher ( name, comment) VALUES ('Sonstige', '');
+INSERT INTO publisher ( name, comment) VALUES ('Springer', '');
+INSERT INTO publisher ( name, comment) VALUES ('Wiley', '');
+INSERT INTO publisher ( name, comment) VALUES ('Klett', '');
