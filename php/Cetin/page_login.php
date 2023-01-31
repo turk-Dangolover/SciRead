@@ -27,7 +27,7 @@ Beschreibung: Login Seite
       <div class="card" style="border-radius: 1rem;">
         <div class="row">
           <!-- Bei kleinen Bildschirmen wird das Bild ausgeblendet -->
-          <div class=" col-lg-5 d-none d-md-block">
+          <div class=" col-lg-5 d-none d-lg-block">
             <img src="https://images.pexels.com/photos/1907784/pexels-photo-1907784.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
           </div>
@@ -39,7 +39,7 @@ Beschreibung: Login Seite
                   <span class="h1 fw-bold mb-0">Login</span>
                 </div>
               </div>
-              <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Melde dich mit in dein Account ein </h5>
+              <h5 class="mb-3 pb-3" style="letter-spacing: 1px;">Melde dich mit in dein Account ein </h5>
               <form method="post" action="function_login.php">
                 <div class="mb-4">
                   <input type="email" id="email" name="email" class="form-control form-control-lg" />

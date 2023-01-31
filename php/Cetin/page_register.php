@@ -22,9 +22,11 @@ Beschreibung: Website zum Registrieren
 ?>
 <div class="container py-5">
     <div class=" d-flex justify-content-center ">
+            <!-- col-xl-10 beschränkt die Größe bei großen Bildschirmen -->
       <div class="col col-xl-10">
         <div class="card" style="border-radius: 1rem;">
           <div class="row ">
+            <!-- Bei kleinen Bildschirmen wird das Bild ausgeblendet -->
             <div class="col-md-6 col-lg-5 d-none d-md-block">
               <img src="../../pic/register.jpg" alt="login form" class="img-fluid" style="height: 555px;  border-radius: 1rem 0 0 1rem;" />
             </div>
@@ -36,17 +38,17 @@ Beschreibung: Website zum Registrieren
                     <span class="h1 fw-bold mb-0">Registrieren</span>
                   </div>
                 </div>
-                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Registrier dich jetzt! </h5>
+                  <h5 class=" mb-3 pb-3" style="letter-spacing: 1px;">Registrier dich jetzt! </h5>
                   <form method="post" action="function_register.php">
                     <div class="form-outline mb-4">
                       <input type="email" id="email" name="email" class="form-control form-control-lg" required />
                       <label class="form-label" for="email">Email Adresse</label>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="mb-4">
                       <input type="password" id="kennwort" name="kennwort" class="form-control form-control-lg minlength="8" required pattern=".{8,}" title="Das Passwort muss mindestens 8 Zeichen lang sein."/>
                       <label class="form-label" for="kennwort">Kennwort</label>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="mb-4">
                       <input type="password" id="kennwort2" name="kennwort2" class="form-control form-control-lg minlength="8" required pattern=".{8,}" title="Das Passwort muss mindestens 8 Zeichen lang sein."/>
                       <label class="form-label" >Bitte Kennwort erneut eingeben</label>
                     </div>
