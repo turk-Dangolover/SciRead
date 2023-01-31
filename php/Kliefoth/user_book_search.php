@@ -313,7 +313,7 @@
                                 echo "<td>" . $b[6] . "</td>";
                                 echo "<td>" . $b[7] . "</td>";
                                 echo "<td><a href='user_book_search.php?use=update&id=$b[0]' class='btn btn-primary'>Bearbeiten</a>";
-                                if (($_SESSION['roles_id'] !== 1) || $user_id === $book[8]) {
+                                if (($_SESSION['roles_id'] !== 1) || $user_id === $b[8]) {
                                     echo " <a href='user_book_search.php?use=delete&id=$b[0]' class='btn btn-danger'>Löschen</a></td>";
                                 } else {
                                     echo "</td>";
