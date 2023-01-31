@@ -58,10 +58,10 @@ if (isset($_SESSION['roles_id'])) {
         <a class="p-2 text-muted" href="../Dreessen/Homepage.php">Übersicht</a>
         <?php if ($login) {
           echo '<a class="p-2 text-muted" href="../Dreessen/Submit_page.php">Hinzufügen</a>';
-          echo '<a class="p-2 text-muted" href="../Cetin/page_profile.php">User</a>';
+          echo '<a class="p-2 text-muted" href="../Cetin/page_profile.php">Account</a>';
         } else {
           echo '<a class="p-2 text-muted" href="../Cetin/page_login.php">Hinzufügen</a>';
-          echo '<a class="p-2 text-muted" href="../Cetin/page_login.php">User</a>';
+          echo '<a class="p-2 text-muted" href="../Cetin/page_login.php">Account</a>';
         }
         ?>
         <?php if ($user_role == "0" || $user_role == '2') {
