@@ -58,7 +58,7 @@ INSERT INTO type ( type, comment) VALUES ('Lerbuch', '');
 INSERT INTO type ( type, comment) VALUES ('Artikel', '');
 INSERT INTO type ( type, comment) VALUES ('Masterarbeit', '');
 
-INSERT INTO publisher ( name, comment) VALUES ('Andere', '');
+INSERT INTO publisher ( name, comment) VALUES ('Sonstige', '');
 INSERT INTO publisher ( name, comment) VALUES ('Springer', '');
 INSERT INTO publisher ( name, comment) VALUES ('Wiley', '');
 INSERT INTO publisher ( name, comment) VALUES ('Klett', '');
