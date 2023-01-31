@@ -49,8 +49,9 @@ $hashed_password = password_hash($passwort_neu, PASSWORD_DEFAULT);
 
 // Updatet das Passwort in der Datenbank
 try{
-$sql = "UPDATE users SET passwort = '$hashed_password' WHERE user_id = :user_id";
+$sql = "UPDATE users SET passwort = :hashed_password WHERE user_id = :user_id";
 $stmt = $dbh->prepare($sql);
+$stmt->bindValue(':hashed_password', $hashed_password);
 $stmt->bindValue(':user_id', $user_id);
 $stmt->execute();
 }
