@@ -124,7 +124,7 @@ include '../dreessen/Server_connect.php'
 function getFachbereichId(fachbereich) {
   $.ajax({
     type: 'POST',
-    url: 'Submit.php',
+    url: 'Submit_database.php',
     data: {fachbereich: fachbereich},
     success: function(response) {
       document.getElementById("fachbereich_id").value = response;
@@ -134,7 +134,7 @@ function getFachbereichId(fachbereich) {
 function getVerlagId(publisher) {
   $.ajax({
     type: 'POST',
-    url: 'Submit.php',
+    url: 'Submit_database.php',
     data: {publisher: publisher},
     success: function(response) {
       document.getElementById("publisher_id").value = response;
@@ -144,7 +144,7 @@ function getVerlagId(publisher) {
 function getTypId(type) {
   $.ajax({
     type: 'POST',
-    url: 'Submit.php',
+    url: 'Submit_database.php',
     data: {type: type},
     success: function(response) {
       document.getElementById("type_id").value = response;
