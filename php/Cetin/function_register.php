@@ -7,6 +7,15 @@ Beschreibung: Verarbeitet die Daten aus dem Formular, um einen neuen Benutzer an
 // Verbindung zur Datenbank
 require 'connect.php';
 
+if (!isset($_POST['email']) || !isset($_POST['kennwort']) || !isset($_POST['kennwort2'])) {
+    // Falls die Daten nicht aus dem Formular kommen, wird eine Fehlermeldung ausgegeben
+    ?>
+    <script>
+        window.location.href = "page_register.php";
+    </script>
+    <?php
+    return;
+}
 // Daten vom Formular erhalten
 $email = $_POST['email'];
 $password = $_POST['kennwort'];
