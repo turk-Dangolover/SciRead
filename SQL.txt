@@ -51,9 +51,9 @@ user_id integer references users(user_id)
 INSERT INTO fachbereich (fachbereich, comment) VALUES ( 'Biologie', '');
 INSERT INTO fachbereich (fachbereich, comment) VALUES ('Physik', '');
 INSERT INTO fachbereich ( fachbereich, comment) VALUES ('Mathe', '');
-INSERT INTO fachbereich ( fachbereich, comment) VALUES ('Andere', '');
+INSERT INTO fachbereich ( fachbereich, comment) VALUES ('Sonstige', '');
 
-INSERT INTO type ( type, comment) VALUES ('Andere', '');
+INSERT INTO type ( type, comment) VALUES ('Sonstige', '');
 INSERT INTO type ( type, comment) VALUES ('Lerbuch', '');
 INSERT INTO type ( type, comment) VALUES ('Artikel', '');
 INSERT INTO type ( type, comment) VALUES ('Masterarbeit', '');
