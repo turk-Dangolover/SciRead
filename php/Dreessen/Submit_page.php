@@ -24,7 +24,7 @@ include '../dreessen/Server_connect.php'
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <label for="author">Autor:</label>
-                                <input type="text" class="form-control" name="author" placeholder="Auor"  required>
+                                <input type="text" class="form-control" name="author" placeholder="Autor"  required>
                                 <div class="invalid-feedback">
                                     Bitte gebe den Autor an.
                                 </div>
