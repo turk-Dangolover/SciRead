@@ -10,9 +10,13 @@ require 'connect.php';
 // Überprüfen ob das Formular leer ist
 if(empty($_POST)){
     // Formular war leer
-    echo 'Formular war leer';
+    ?>
+    <script>
+    window.location.href = "page_register.php";
+    </script>
+    <?php
     return;
-}
+    }
 
 // Daten vom Formular erhalten
 $email = $_POST['email'];
