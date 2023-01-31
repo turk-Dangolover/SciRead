@@ -23,7 +23,7 @@
 <tr>
   <th>ID</th>
   <th>Typ</th>
-  <th>Kommentar</th>
+  <th>Anmerkungen</th>
   <th></th>
   <th></th>
 </tr>

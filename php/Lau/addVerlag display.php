@@ -24,7 +24,7 @@
 <tr>
   <th>ID</th>
   <th>Verlag</th>
-  <th>Kommentar</th>
+  <th>Anmerkungen</th>
   <th></th>
 </tr>
 </thead>

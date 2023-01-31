@@ -1,6 +1,16 @@
 <html>
 <body>
   <?php
+   if (!isset($_SESSION['user_id'])) {
+        include_once('../Cetin/401.php');
+        return;
+      }
+      $user_id = $_SESSION['user_id'];
+      $role = $_SESSION['roles_id'];
+      if(!isset($role) ||$role==2){
+        include_once ('../Cetin/401.php');
+        return;
+        }
         $varfachbereich= $_POST['fachbereich'];
         $varanmerkung= $_POST['comment'];
 
