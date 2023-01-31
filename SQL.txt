@@ -47,3 +47,18 @@ bookmark_id Serial Primary Key,
 literatur_id integer references literatur(literatur_id) not null,
 user_id integer references users(user_id) 
 );
+
+INSERT INTO fachbereich (fachbereich_id, fachbereich, comment) VALUES (1, 'Biologie', '');
+INSERT INTO fachbereich (fachbereich_id, fachbereich, comment) VALUES (2, 'Physik', '');
+INSERT INTO fachbereich (fachbereich_id, fachbereich, comment) VALUES (3, 'Mathe', '');
+INSERT INTO fachbereich (fachbereich_id, fachbereich, comment) VALUES (4, 'Andere', '');
+
+INSERT INTO type (type_id, type, comment) VALUES (1, 'Andere', '');
+INSERT INTO type (type_id, type, comment) VALUES (2, 'Lerbuch', '');
+INSERT INTO type (type_id, type, comment) VALUES (3, 'Artikel', '');
+INSERT INTO type (type_id, type, comment) VALUES (4, 'Masterarbeit', '');
+
+INSERT INTO publisher (publisher_id, publisher, comment) VALUES (1, 'Andere', '');
+INSERT INTO publisher (publisher_id, publisher, comment) VALUES (2, 'Springer', '');
+INSERT INTO publisher (publisher_id, publisher, comment) VALUES (3, 'Wiley', '');
+INSERT INTO publisher (publisher_id, publisher, comment) VALUES (1, 'Klett', '');
