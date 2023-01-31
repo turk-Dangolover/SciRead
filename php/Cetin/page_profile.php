@@ -45,7 +45,7 @@ if (!$login) {
       </div>
       <br>
       <div class="list-group">
-        <h4 class="list-group-item list-group-item-action active">Account</h4>
+        <h4 class="list-group-item list-group-item-action active">Konto</h4>
         <a href="page_change_password.php" class="list-group-item list-group-item-action ">Passwort ändern</a>
         <?php
         if($role == 2){
