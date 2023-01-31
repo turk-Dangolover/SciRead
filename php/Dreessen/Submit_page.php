@@ -64,7 +64,7 @@ include '../dreessen/Server_connect.php'
                                 <select class="custom-select mr-sm-2" name="fachbereich" required onchange="getFachbereichId(this.value)">
                                     <option value="" disabled selected hidden>Wähle...</option>
                                     <?php
-                                    $stmt = executeSQL("SELECT fachbereich FROM fachbereich");
+                                    $stmt = executeSQL("SELECT fachbereich FROM fachbereich ORDER BY fachbereich ASC");
                                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         echo '<option value="' . $row['fachbereich'] . '">' . $row['fachbereich'] . '</option>';
                                     }
@@ -80,7 +80,7 @@ include '../dreessen/Server_connect.php'
                                 <select class="custom-select mr-sm-2" name="typ" required onchange="getTypId(this.value)">
                                     <option value="" disabled selected hidden>Wähle...</option>
                                     <?php
-                                    $stmt = executeSQL("SELECT type FROM type");
+                                    $stmt = executeSQL("SELECT type FROM type ORDER BY type ASC");
                                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         echo '<option value="' . $row['type'] . '">' . $row['type'] . '</option>';
                                     }
