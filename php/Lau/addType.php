@@ -39,7 +39,7 @@
         <div class="row align-items-end">
           <div class="col-md-4 mb-3">
           <label for="type">Typ:</label>
-          <input type="text"  class="form-control" name="type" id="type">
+          <input type="text"  class="form-control" name="type" id="type" required>
         </div>
           <div class="col-md-4 mb-3">
             <label for="comment">Anmerkungen:</label>
