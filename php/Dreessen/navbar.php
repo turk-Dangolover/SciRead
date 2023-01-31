@@ -55,7 +55,7 @@ if (isset($_SESSION['roles_id'])) {
     <!--Start der Nav bar-->
     <div class="nav-scroller py-1 mb-2">
       <nav class="nav d-flex justify-content-between">
-        <a class="p-2 text-muted" href="../Dreessen/Homepage.php">Suche</a>
+        <a class="p-2 text-muted" href="../Dreessen/Homepage.php">Übersicht</a>
         <?php if ($login) {
           echo '<a class="p-2 text-muted" href="../Dreessen/Submit_page.php">Hinzufügen</a>';
           echo '<a class="p-2 text-muted" href="../Cetin/page_profile.php">User</a>';
