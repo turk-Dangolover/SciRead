@@ -41,7 +41,7 @@ include '../dreessen/Server_connect.php'
                                 <select class="custom-select mr-sm-2" name="verlag" required onchange="getVerlagId(this.value)">
                                     <option value="" disabled selected hidden>Wähle...</option>
                                     <?php
-                                    $stmt = executeSQL("SELECT name FROM publisher");
+                                    $stmt = executeSQL("SELECT name FROM publisher ORDER BY name ASC");
                                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
                                     }
