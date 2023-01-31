@@ -189,7 +189,7 @@
                     <!-- #endregion -->
                 <?php } else { ?>
                     <!-- #region Error if none found-->
-                    <p> Keine Einträge gefunden! <a href="search.php">Zurück zur Suche ?</a></p>
+                    <p> Keine Einträge gefunden! <a href="../Dreessen/Homepage.php">Zurück zur Suche ?</a></p>
                 <?php } ?>
                 <!-- #endregion -->
             <?php } ?>
