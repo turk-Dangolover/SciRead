@@ -1,4 +1,16 @@
-<form method="post">
+
+<?php
+  if (!isset($_SESSION['user_id'])) {
+    include_once('../Cetin/401.php');
+    return;
+  }
+  $user_id = $_SESSION['user_id'];
+  $role = $_SESSION['roles_id'];
+  if(!isset($role) ||$role==2) {
+    include_once('../Cetin/401.php');
+    return;
+  } ?>
+  <form method="post">
 <div class="mb-3 mt-3 row align-items-end">
   <div class="col-auto">
   <div class="form-group">
@@ -23,7 +35,7 @@
 <tr>
   <th>ID</th>
   <th>Typ</th>
-  <th>Kommentar</th>
+  <th>Anmerkungen</th>
   <th></th>
   <th></th>
 </tr>
