@@ -58,7 +58,7 @@ INSERT INTO type (type_id, type, comment) VALUES (2, 'Lehrbuch', '');
 INSERT INTO type (type_id, type, comment) VALUES (3, 'Artikel', '');
 INSERT INTO type (type_id, type, comment) VALUES (4, 'Masterarbeit', '');
 
-INSERT INTO publisher (publisher_id, publisher, comment) VALUES (1, 'Sonstige', '');
-INSERT INTO publisher (publisher_id, publisher, comment) VALUES (2, 'Springer', '');
-INSERT INTO publisher (publisher_id, publisher, comment) VALUES (3, 'Wiley', '');
-INSERT INTO publisher (publisher_id, publisher, comment) VALUES (1, 'Klett', '');
+INSERT INTO publisher (publisher_id, name, comment) VALUES (1, 'Sonstige', '');
+INSERT INTO publisher (publisher_id, name, comment) VALUES (2, 'Springer', '');
+INSERT INTO publisher (publisher_id, name, comment) VALUES (3, 'Wiley', '');
+INSERT INTO publisher (publisher_id, name, comment) VALUES (4, 'Klett', '');
