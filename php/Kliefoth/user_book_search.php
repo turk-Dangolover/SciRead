@@ -65,10 +65,10 @@
         $sort = "ORDER BY Title ASC";
     }
     if (isset($user_id) && isset($_SESSION['roles_id'])) {
-        if ($_SESSION['roles_id'] === 1) {
-            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE title LIKE '$titel%' $sort")->fetchAll();
+        if ($_SESSION['roles_id'] !== 2) {
+            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,lit.user_id FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE title LIKE '$titel%' $sort")->fetchAll();
         } else {
-            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN  type ty USING (type_id) WHERE title LIKE '$titel%' AND lit.user_id = '$user_id' $sort")->fetchAll();
+            $books = executeSQL("SELECT lit.literatur_id,title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,lit.user_id FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN  type ty USING (type_id) WHERE title LIKE '$titel%' AND lit.user_id = '$user_id' $sort")->fetchAll();
         }
     }
 
@@ -77,7 +77,7 @@
         if (!isset($agreed)) {
             $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,lit.user_id FROM public.\"literatur\" lit  JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
-                if ($user_id === $book[7]) {
+                if ($user_id === $book[7] || $_SESSION['roles_id'] === 1  || $_SESSION['roles_id'] === 3) {
     ?>
                     <div class="container">
                         <div class="card">
@@ -131,7 +131,7 @@
         } else {
             $book_userid = executeSQL("SELECT user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch()[0];
             if (isset($user_id)) {
-                if ($user_id === $book_userid) {
+                if ($user_id === $book_userid || $_SESSION['roles_id'] === 1  || $_SESSION['roles_id'] === 3) {
                     $bookmark = executeSQL("SELECT bookmark_id FROM public.\"bookmark\" WHERE literatur_id='$id'")->fetchAll();
                     foreach ($bookmark as $b) {
                         executeSQL('DELETE FROM public."bookmark" WHERE bookmark_id=' . $b[0])->fetch();
@@ -145,7 +145,7 @@
         if (!isset($agreed)) {
             $book = executeSQL("SELECT title,pub.publisher_id,pages,ty.type_id,author,published_date,fb.fachbereich_id,lit.user_id FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
-                if ($user_id === $book[7]) {
+                if ($user_id === $book[7] || $_SESSION['roles_id'] === 1  || $_SESSION['roles_id'] === 3) {
                 ?>
                     <div class="container">
                         <div class="card">
@@ -243,7 +243,7 @@
         } else {
             $book_userid = executeSQL("SELECT user_id FROM public.\"literatur\" WHERE literatur_id='$id'")->fetch()[0];
             if (isset($user_id)) {
-                if ($user_id === $book_userid) {
+                if ($user_id === $book_userid || $_SESSION['roles_id'] === 1  || $_SESSION['roles_id'] === 3) {
                     executeSQL("UPDATE literatur SET title='" . $title . "',publisher_id='" . $verlagid . "',pages='" . $seitenzahl . "',type_id='" . $typid . "',author='" . $author . "',published_date='" . $veröffentlichungsdatum . "',fachbereich_id='" . $fachbereichid . "'  WHERE literatur_id=" . $id)->execute();
                 }
             }
@@ -312,7 +312,12 @@
                                 echo "<td>" . $b[5] . "</td>";
                                 echo "<td>" . $b[6] . "</td>";
                                 echo "<td>" . $b[7] . "</td>";
-                                echo "<td><a href='user_book_search.php?use=update&id=$b[0]' class='btn btn-primary'>Bearbeiten</a> <a href='user_book_search.php?use=delete&id=$b[0]' class='btn btn-danger'>Löschen</a></td>";
+                                echo "<td><a href='user_book_search.php?use=update&id=$b[0]' class='btn btn-primary'>Bearbeiten</a>";
+                                if (($_SESSION['roles_id'] !== 1) || $user_id === $book[8]) {
+                                    echo " <a href='user_book_search.php?use=delete&id=$b[0]' class='btn btn-danger'>Löschen</a></td>";
+                                } else {
+                                    echo "</td>";
+                                }
                                 echo "</tr>";
                             }
                             ?>
