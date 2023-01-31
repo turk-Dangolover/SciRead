@@ -68,7 +68,7 @@ if (isset($_SESSION['roles_id'])) {
         } else {
           echo '<a class="p-2 text-muted" href="../Cetin/page_admin.php">Adminbereich</a>';
         } ?>
-
+        <!--Einrücken der Funktionen-->
         <a class="p-2 text-muted" href="#"></a>
         <a class="p-2 text-muted" href="#"></a>
         <a class="p-2 text-muted" href="#"></a>

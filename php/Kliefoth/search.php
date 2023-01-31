@@ -136,7 +136,6 @@
             </div>
         </div>
     </div>
-    <?php include "../Dreessen/footer.php" ?>
 </body>
 
 </html>

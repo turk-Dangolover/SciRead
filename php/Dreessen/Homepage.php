@@ -17,7 +17,9 @@ include_once 'navbar.php';
         </div> 
         <?php include_once '../Kliefoth/search.php'?>    
       </div>
-      <?php include_once 'footer.php' ?>
+    <?php 
+    include 'footer.php' 
+    ?>
     </body>
     <form>
     </form>
