@@ -75,7 +75,7 @@
 
     if ($use === "delete" && isset($id)) {
         if (!isset($agreed)) {
-            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,lit.user_id FROM public.\"literatur\" lit  JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
+            $book = executeSQL("SELECT title,pub.name,pages,ty.type,author,published_date,fb.fachbereich,lit.user_id FROM public.\"literatur\" lit LEFT JOIN fachbereich fb USING (fachbereich_id) LEFT JOIN publisher pub USING (publisher_id) LEFT JOIN type ty USING (type_id) WHERE literatur_id='$id'")->fetch();
             if (isset($user_id)) {
                 if ($user_id === $book[7] || $_SESSION['roles_id'] === 1  || $_SESSION['roles_id'] === 3) {
     ?>

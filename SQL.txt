@@ -62,3 +62,10 @@ INSERT INTO publisher ( name, comment) VALUES ('Sonstige', '');
 INSERT INTO publisher ( name, comment) VALUES ('Springer', '');
 INSERT INTO publisher ( name, comment) VALUES ('Wiley', '');
 INSERT INTO publisher ( name, comment) VALUES ('Klett', '');
+
+
+
+-----------
+Anmeldung Owner (Account mit allen Berechtigungen)
+email: admin@admin.de
+passwort: admin
