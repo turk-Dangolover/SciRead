@@ -20,16 +20,22 @@ $user_id = $_SESSION['user_id']
         $stmt->execute([$fachbereich]);
         $id = $stmt->fetch(PDO::FETCH_ASSOC);
         $varfachbereichid =$id['fachbereich_id'];
+        $fachbereichid = $_POST['fachbereich_id'];
+
         //Neue IDs erstellen für verlag und typ
         $stmt = $dbConnection->prepare("SELECT publisher_id FROM publisher WHERE name = ?");
         $stmt->execute([$verlag]);
         $id = $stmt->fetch(PDO::FETCH_ASSOC);
         $varverlagid =$id['publisher_id'];
+        $verlagid = $_POST['verlagid'];
+        
         //TypID Herausgeben
         $stmt = $dbConnection->prepare("SELECT type_id FROM type WHERE type = ?");
         $stmt->execute([$typ]);
         $id = $stmt->fetch(PDO::FETCH_ASSOC);
         $vartypid =$id['type_id'];
+        $typeid = $_POST['type_id'];
+
         //alles zusammengelegt
         $newId = (executeSQL("SELECT max(literatur_id) FROM literatur")->fetch())[0]+1;
         $insertLine = "INSERT INTO literatur(literatur_id, pages, author, title, published_date, comment, fachbereich_id, type_id, publisher_id, user_id)

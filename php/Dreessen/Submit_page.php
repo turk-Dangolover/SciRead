@@ -125,7 +125,7 @@ function getFachbereichId(fachbereich) {
   $.ajax({
     type: 'POST',
     url: 'Submit_database.php',
-    data: {fachbereich: fachbereich},
+    data: {fachbereich: $varfachbereichid},
     success: function(response) {
       document.getElementById("fachbereich_id").value = response;
     }
@@ -135,7 +135,7 @@ function getVerlagId(publisher) {
   $.ajax({
     type: 'POST',
     url: 'Submit_database.php',
-    data: {publisher: publisher},
+    data: {publisher: $varverlagid},
     success: function(response) {
       document.getElementById("publisher_id").value = response;
     }
@@ -145,7 +145,7 @@ function getTypId(type) {
   $.ajax({
     type: 'POST',
     url: 'Submit_database.php',
-    data: {type: type},
+    data: {type: $vartypeid},
     success: function(response) {
       document.getElementById("type_id").value = response;
     }
